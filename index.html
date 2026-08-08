@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jurassic Toy Battle</title>
+<style>
+:root {
+  --bg:#08130f; --panel:#10251d; --panel2:#173328; --text:#f1f7f3; --muted:#9fb6aa;
+  --accent:#79e38f; --danger:#ff6f67; --gold:#f4ce68; --line:#29513f;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:
+radial-gradient(circle at top,#173b2b 0,#08130f 40%,#050a08 100%);color:var(--text);min-height:100vh}
+.app{max-width:1180px;margin:auto;padding:22px}
+h1{margin:0;font-size:clamp(28px,5vw,52px);letter-spacing:.04em}
+.sub{color:var(--muted);margin:5px 0 18px}
+.setup,.arena,.log{background:rgba(16,37,29,.9);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 20px 70px rgba(0,0,0,.28)}
+.setup{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:end}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}
+select,button{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#0b1c16;color:var(--text);font-size:16px}
+button{cursor:pointer;font-weight:750}
+button.primary{background:linear-gradient(135deg,#2c7e4a,#57bf70);color:#041008;border:0}
+button:disabled{opacity:.45;cursor:not-allowed}
+.vs{font-weight:900;font-size:20px;padding-bottom:12px;color:var(--gold)}
+.arena{margin-top:18px;display:grid;grid-template-columns:1fr 190px 1fr;gap:16px;align-items:stretch}
+.card{background:linear-gradient(180deg,var(--panel2),#0d2018);border:1px solid var(--line);border-radius:18px;padding:18px;position:relative;overflow:hidden}
+.card.active{outline:2px solid var(--accent);box-shadow:0 0 30px rgba(121,227,143,.14)}
+.card h2{margin:0 0 5px;font-size:25px}
+.turntag{font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;font-weight:800}
+.hpbar{height:15px;background:#271b1a;border-radius:20px;overflow:hidden;margin:14px 0 5px}
+.hpfill{height:100%;background:linear-gradient(90deg,#e64c45,#ff9a67);transition:width .4s ease}
+.hptext{font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0}
+.stat{background:#091813;border:1px solid #244536;border-radius:12px;padding:10px;text-align:center}
+.stat b{display:block;font-size:22px;color:var(--gold)}
+.special{background:#0b1914;border-left:4px solid var(--accent);padding:10px 12px;border-radius:8px;font-size:14px;color:#dbe9e0}
+.center{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:10px}
+.dice-wrap{perspective:700px}
+.dice{width:108px;height:108px;border-radius:22px;background:#f7f5ec;color:#111;display:grid;place-items:center;
+font-size:56px;font-weight:900;box-shadow:0 14px 35px rgba(0,0,0,.35);border:5px solid #ddd7c9;cursor:pointer;user-select:none}
+.dice.rolling{animation:roll .75s cubic-bezier(.2,.8,.2,1)}
+@keyframes roll{0%{transform:rotate(0) scale(1)}25%{transform:rotate(130deg) scale(.84)}55%{transform:rotate(300deg) scale(1.12)}100%{transform:rotate(720deg) scale(1)}}
+#turnLabel{font-weight:850;color:var(--gold)}
+.small{font-size:12px;color:var(--muted)}
+.log{margin-top:18px}
+#history{max-height:270px;overflow:auto;display:flex;flex-direction:column-reverse;gap:7px}
+.entry{background:#0b1914;border:1px solid #213e32;padding:10px 12px;border-radius:10px}
+.entry strong{color:var(--gold)}
+.controls{display:flex;gap:8px;margin-top:12px}
+.controls button{width:auto;flex:1}
+.winner{font-size:28px;font-weight:950;color:var(--gold);margin:8px 0}
+@media(max-width:800px){
+ .setup{grid-template-columns:1fr} .vs{text-align:center;padding:0}
+ .arena{grid-template-columns:1fr} .center{order:-1;padding:10px 0}
+ .dice{width:92px;height:92px;font-size:48px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>JURASSIC TOY BATTLE</h1>
+  <div class="sub">Pick two fighters. Tap the dice to resolve each turn.</div>
+
+  <section class="setup">
+    <div><label>Fighter 1</label><select id="p1"></select></div>
+    <div class="vs">VS</div>
+    <div><label>Fighter 2</label><select id="p2"></select></div>
+    <button class="primary" id="start" style="grid-column:1/-1">START BATTLE</button>
+  </section>
+
+  <section class="arena">
+    <div class="card" id="card1"></div>
+
+    <div class="center">
+      <div id="turnLabel">Choose fighters</div>
+      <div class="dice-wrap"><div class="dice" id="dice" aria-label="Roll dice">⚅</div></div>
+      <div class="small">TAP DICE TO ATTACK</div>
+      <div id="result"></div>
+    </div>
+
+    <div class="card" id="card2"></div>
+  </section>
+
+  <section class="log">
+    <div id="winner"></div>
+    <div class="controls">
+      <button id="reset">Reset battle</button>
+      <button id="rematch">Rematch</button>
+    </div>
+    <h3>Battle log</h3>
+    <div id="history"></div>
+  </section>
+</div>
+
+<script>
+const dinos = [{"name": "Scorpios Rex", "hp": 16, "atk": 8, "def": 5, "spd": 9, "special": "Venom Quills", "desc": "On a natural 6, deal +2 damage and 1 poison damage at the start of the opponent's next turn."}, {"name": "Indominus Rex", "hp": 23, "atk": 10, "def": 8, "spd": 8, "special": "Camouflage", "desc": "Once per battle, reduce an incoming attack total by 4."}, {"name": "Pteranodon", "hp": 8, "atk": 3, "def": 2, "spd": 10, "special": "Dive Attack", "desc": "Its first attack gains +3 ATK."}, {"name": "Brachiosaurus", "hp": 27, "atk": 4, "def": 8, "spd": 2, "special": "Massive Stomp", "desc": "Once per battle, gain +4 ATK."}, {"name": "Suchomimus", "hp": 17, "atk": 7, "def": 6, "spd": 7, "special": "Hook Claws", "desc": "On attack die 5 or 6, a successful hit deals +2 damage."}, {"name": "T. rex", "hp": 22, "atk": 10, "def": 8, "spd": 5, "special": "Crushing Bite", "desc": "Once per battle, gain +4 ATK."}, {"name": "Kentrosaurus", "hp": 15, "atk": 7, "def": 9, "spd": 4, "special": "Spiked Tail", "desc": "If its defence total beats the attack total by 3+, attacker takes 2 damage."}, {"name": "Giganotosaurus", "hp": 23, "atk": 9, "def": 7, "spd": 5, "special": "Powerful Bite", "desc": "Successful hits always deal at least 2 damage."}, {"name": "Spinosaurus \u2013 Tail Strike", "hp": 22, "atk": 8, "def": 6, "spd": 6, "special": "Tail Strike", "desc": "Once per battle, gain +3 ATK; on hit, opponent loses 2 SPD next turn."}, {"name": "Spinosaurus \u2013 Extreme Damage", "hp": 22, "atk": 9, "def": 6, "spd": 6, "special": "Extreme Damage", "desc": "Once per battle, add +4 damage to a successful hit."}, {"name": "Becklespinax", "hp": 18, "atk": 8, "def": 6, "spd": 7, "special": "Rush Attack", "desc": "Gain +2 ATK when acting first in the round."}, {"name": "Carnotaurus", "hp": 15, "atk": 7, "def": 4, "spd": 9, "special": "Charge", "desc": "Its first attack gains +3 ATK."}, {"name": "Distortus Rex", "hp": 24, "atk": 10, "def": 9, "spd": 7, "special": "Mutation", "desc": "Once per battle: roll 1\u20132 +3 DEF, 3\u20134 +3 ATK, 5\u20136 heal 4 HP."}, {"name": "Stegosaurus", "hp": 19, "atk": 9, "def": 10, "spd": 3, "special": "Thagomizer", "desc": "Once per battle, gain +4 ATK."}, {"name": "Therizinosaurus", "hp": 18, "atk": 9, "def": 5, "spd": 6, "special": "Claw Slash", "desc": "If an attack wins by 4+, deal +3 damage."}, {"name": "Minotaurus", "hp": 16, "atk": 7, "def": 8, "spd": 5, "special": "Armoured Charge", "desc": "Once per battle, use DEF instead of ATK for one attack."}, {"name": "Eotriceratops", "hp": 21, "atk": 8, "def": 9, "spd": 4, "special": "Horn Charge", "desc": "Its first attack gains +3 ATK."}, {"name": "Ceratosaurus male", "hp": 16, "atk": 7, "def": 6, "spd": 7, "special": "Aggressive Bite", "desc": "Gain +1 ATK while below half HP."}, {"name": "Ceratosaurus female", "hp": 15, "atk": 7, "def": 6, "spd": 8, "special": "Quick Attack", "desc": "Gain +2 ATK when acting first in a round."}, {"name": "Tyrannotitan", "hp": 20, "atk": 9, "def": 7, "spd": 6, "special": "Bone Crusher", "desc": "Successful hits always deal at least 2 damage."}, {"name": "Baryonyx", "hp": 16, "atk": 7, "def": 5, "spd": 7, "special": "Claw Rake", "desc": "Once per turn, an attack roll of 1 may be rerolled."}, {"name": "Gorgosaurus", "hp": 17, "atk": 8, "def": 6, "spd": 8, "special": "Pursuit Predator", "desc": "Gain +2 ATK against a slower opponent."}, {"name": "Quetzalcoatlus", "hp": 12, "atk": 5, "def": 3, "spd": 9, "special": "Aerial Strike", "desc": "Once per battle, gain +3 ATK."}, {"name": "Allosaurus", "hp": 18, "atk": 8, "def": 6, "spd": 7, "special": "Serrated Bite", "desc": "A natural 6 deals +3 extra damage."}];
+const p1 = document.querySelector('#p1'), p2=document.querySelector('#p2');
+const card1=document.querySelector('#card1'), card2=document.querySelector('#card2');
+const dice=document.querySelector('#dice'), turnLabel=document.querySelector('#turnLabel');
+const result=document.querySelector('#result'), history=document.querySelector('#history'), winner=document.querySelector('#winner');
+
+dinos.forEach((d,i)=>{
+  p1.add(new Option(d.name,i)); p2.add(new Option(d.name,i));
+});
+p2.selectedIndex=5;
+
+let state=null;
+
+function fighter(d){
+  return {...d,maxHp:d.hp,currentHp:d.hp,firstAttack:true,specialUsed:false,poison:0,tempSpdPenalty:0};
+}
+function renderCard(el,f,active){
+  if(!f){el.innerHTML='<div class="small">No fighter selected</div>';return}
+  const pct=Math.max(0,Math.round(f.currentHp/f.maxHp*100));
+  el.className='card'+(active?' active':'');
+  el.innerHTML=`<div class="turntag">${active?'YOUR TURN':''}</div>
+  <h2>${f.name}</h2>
+  <div class="hpbar"><div class="hpfill" style="width:${pct}%"></div></div>
+  <div class="hptext">${f.currentHp} / ${f.maxHp} HP</div>
+  <div class="stats">
+    <div class="stat">ATK<b>${f.atk}</b></div>
+    <div class="stat">DEF<b>${f.def}</b></div>
+    <div class="stat">SPD<b>${f.spd}</b></div>
+  </div>
+  <div class="special"><b>${f.special}</b><br>${f.desc}</div>`;
+}
+function log(msg){const e=document.createElement('div');e.className='entry';e.innerHTML=msg;history.prepend(e)}
+function rollD6(){return Math.floor(Math.random()*6)+1}
+
+function startBattle(){
+  if(p1.value===p2.value){alert('Choose two different dinosaurs.');return}
+  const a=fighter(dinos[p1.value]), b=fighter(dinos[p2.value]);
+  const first = a.spd===b.spd ? (rollD6()>=4?0:1) : (a.spd>b.spd?0:1);
+  state={fighters:[a,b],turn:first,round:1,over:false};
+  history.innerHTML=''; winner.innerHTML=''; result.textContent='';
+  log(`<strong>Battle begins!</strong> ${state.fighters[first].name} attacks first.`);
+  render();
+}
+
+function render(){
+  if(!state){renderCard(card1,null,false);renderCard(card2,null,false);return}
+  renderCard(card1,state.fighters[0],state.turn===0&&!state.over);
+  renderCard(card2,state.fighters[1],state.turn===1&&!state.over);
+  turnLabel.textContent=state.over?'BATTLE OVER':state.fighters[state.turn].name;
+}
+
+function computeAttack(attacker, defender, die){
+  let atk=attacker.atk, bonus=0, extra=0, note=[];
+  if(attacker.firstAttack && ['Pteranodon','Carnotaurus','Eotriceratops'].includes(attacker.name)){bonus+=3;note.push('first-attack bonus +3')}
+  if(attacker.name==='Becklespinax'){bonus+=2;note.push('rush +2')}
+  if(attacker.name==='Ceratosaurus female'){bonus+=2;note.push('quick attack +2')}
+  if(attacker.name==='Gorgosaurus' && attacker.spd>defender.spd){bonus+=2;note.push('pursuit +2')}
+  if(attacker.name==='Ceratosaurus male' && attacker.currentHp < attacker.maxHp/2){bonus+=1;note.push('aggression +1')}
+  if(attacker.name==='Suchomimus' && die>=5){extra+=2;note.push('hook claws +2 damage')}
+  if(attacker.name==='Allosaurus' && die===6){extra+=3;note.push('serrated bite +3 damage')}
+  if(attacker.name==='Scorpios Rex' && die===6){extra+=2;defender.poison+=1;note.push('venom quills')}
+  return {atkTotal:atk+bonus+die,extra,note};
+}
+
+function resolveTurn(die){
+  if(!state||state.over)return;
+  const ai=state.turn, di=1-ai;
+  const a=state.fighters[ai], d=state.fighters[di];
+
+  if(a.poison>0){a.currentHp=Math.max(0,a.currentHp-a.poison);log(`${a.name} suffers <strong>${a.poison} poison damage</strong>.`);a.poison=0;
+    if(a.currentHp<=0) return finish(di);
+  }
+
+  if(die===1 && a.name!=='Baryonyx'){
+    log(`Round ${state.round}: <strong>${a.name}</strong> rolled 1 — MISS.`);
+    a.firstAttack=false; nextTurn(); return;
+  }
+
+  let usedDie=die;
+  if(die===1 && a.name==='Baryonyx'){usedDie=rollD6();log(`${a.name} uses Claw Rake and rerolls 1 → <strong>${usedDie}</strong>.`)}
+
+  const defenseDie=rollD6();
+  let attack=computeAttack(a,d,usedDie);
+  let atkTotal=attack.atkTotal;
+  let defTotal=d.def+defenseDie+(defenseDie===6?2:0);
+  let damage=0;
+
+  if(atkTotal>defTotal){
+    damage=atkTotal-defTotal+attack.extra+(usedDie===6?2:0);
+    if(['Giganotosaurus','Tyrannotitan'].includes(a.name)) damage=Math.max(2,damage);
+    if(a.name==='Therizinosaurus' && atkTotal-defTotal>=4){damage+=3;attack.note.push('claw slash +3')}
+    d.currentHp=Math.max(0,d.currentHp-damage);
+    log(`Round ${state.round}: <strong>${a.name}</strong> rolled ${usedDie} (ATK ${atkTotal}) vs ${d.name} defence roll ${defenseDie} (DEF ${defTotal}) — <strong>${damage} damage</strong>${attack.note.length?' · '+attack.note.join(', '):''}.`);
+  } else {
+    log(`Round ${state.round}: <strong>${a.name}</strong> rolled ${usedDie} (ATK ${atkTotal}) vs ${d.name} defence roll ${defenseDie} (DEF ${defTotal}) — blocked.`);
+    if(d.name==='Kentrosaurus' && defTotal-atkTotal>=3){a.currentHp=Math.max(0,a.currentHp-2);log(`${a.name} takes <strong>2 spike damage</strong> from Kentrosaurus.`)}
+  }
+
+  result.textContent=`${a.name} rolled ${usedDie}`;
+  a.firstAttack=false;
+  if(d.currentHp<=0) return finish(ai);
+  if(a.currentHp<=0) return finish(di);
+  nextTurn();
+}
+
+function nextTurn(){
+  state.turn=1-state.turn;
+  if(state.turn===0) state.round++;
+  render();
+}
+
+function finish(wi){
+  state.over=true; winner.innerHTML=`<div class="winner">🏆 ${state.fighters[wi].name} WINS!</div>`;
+  log(`<strong>${state.fighters[wi].name} wins the battle.</strong>`);
+  render();
+}
+
+dice.addEventListener('click',()=>{
+  if(!state||state.over)return;
+  dice.classList.remove('rolling'); void dice.offsetWidth; dice.classList.add('rolling');
+  let ticks=0;
+  const spin=setInterval(()=>{dice.textContent=rollD6();ticks++},80);
+  setTimeout(()=>{
+    clearInterval(spin);
+    const final=rollD6(); dice.textContent=final;
+    resolveTurn(final);
+  },760);
+});
+
+document.querySelector('#start').onclick=startBattle;
+document.querySelector('#reset').onclick=()=>{state=null;history.innerHTML='';winner.innerHTML='';result.textContent='';turnLabel.textContent='Choose fighters';render()};
+document.querySelector('#rematch').onclick=()=>{if(state)startBattle()};
+render();
+</script>
+</body>
+</html>
