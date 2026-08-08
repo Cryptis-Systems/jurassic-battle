@@ -2891,135 +2891,17 @@ body:not(.battle-mode) #battleScreen{
 #battleScreen.screen.active{display:block !important;}
 
 
-/* ===== V14.1 Mobile Safari bottom-toolbar clearance ===== */
-@media(max-width:700px){
-  html{
-    min-height:100%;
-    background:#020504;
-  }
-
-  body{
-    min-height:100%;
-    padding-bottom:0 !important;
-  }
-
-  #battleScreen{
-    padding-bottom:140px !important;
-  }
-
-  #historyScreen{
-    padding-bottom:140px !important;
-  }
-
-  .app{
-    padding-bottom:0 !important;
-  }
-
-  /* extra clearance on devices with a home indicator */
-  @supports(padding:max(0px)){
-    #battleScreen,
-    #historyScreen{
-      padding-bottom:max(140px, calc(env(safe-area-inset-bottom) + 110px)) !important;
-    }
-  }
+/* ===== V17.1 DINOSAUR ARTWORK ===== */
+.previewArtwork{
+  position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;
+  margin:-1px 0 11px;border-radius:13px;border:1px solid rgba(255,255,255,.08);
+  background:#06110d;box-shadow:inset 0 0 28px rgba(0,0,0,.35);
 }
-
-
-/* ===== V16.2 mobile browser bottom clearance ===== */
-@media(max-width:700px){
-  html, body{
-    min-height:100%;
-    background:#020504;
-  }
-
-  #battleScreen{
-    padding-bottom:0 !important;
-  }
-
-  /* A real document spacer works more reliably than padding with
-     Safari/Firefox dynamic bottom browser chrome. */
-  #battleScreen::after{
-    content:"";
-    display:block;
-    width:100%;
-    height:220px;
-    height:calc(180px + env(safe-area-inset-bottom));
-    pointer-events:none;
-  }
-
-  #historyScreen::after{
-    content:"";
-    display:block;
-    width:100%;
-    height:220px;
-    height:calc(180px + env(safe-area-inset-bottom));
-    pointer-events:none;
-  }
-
-  body{
-    scroll-padding-bottom:220px;
-  }
-}
-
-
-/* ===== V17: HIDDEN ATTACK + DEFENCE + RARE COUNTERS ===== */
-.phaseChip{
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:4px 8px;border-radius:999px;margin-bottom:6px;
-  font-size:9px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.08)
-}
-.phaseChip.attack{color:#f6d76a;background:rgba(246,207,93,.08);border-color:rgba(246,207,93,.22)}
-.phaseChip.defence{color:#91ddff;background:rgba(91,194,255,.08);border-color:rgba(91,194,255,.22)}
-.phaseChip.reveal{color:#9af0b3;background:rgba(105,232,143,.08);border-color:rgba(105,232,143,.22)}
-.phaseChip.counter{color:#ffe576;background:rgba(246,207,93,.12);border-color:rgba(246,207,93,.35);animation:counterPulse 1.1s ease-in-out infinite}
-.phaseMessage{font-size:10px;line-height:1.35;color:#9caf9f;max-width:270px;margin:auto}
-.choiceTitle{margin:8px 0 6px;font-size:9px;font-weight:950;letter-spacing:.12em}
-.choiceTitle.attack{color:#f2d46f}.choiceTitle.defence{color:#90dbff}
-.lockedChoice{
-  margin-top:8px;padding:10px;border-radius:11px;text-align:center;
-  border:1px dashed rgba(255,255,255,.12);background:#06120d;
-  color:#80958a;font-size:10px;letter-spacing:.05em
-}
-.atkBtn .typeBadge{
-  display:inline-block;margin-left:5px;padding:2px 5px;border-radius:999px;
-  background:rgba(246,207,93,.10);color:#e8d17d;font-size:7px;letter-spacing:.07em
-}
-.attackHint{display:block;margin-top:3px;color:#8da096;font-size:9px;font-weight:400}
-.defences{display:grid;gap:7px;margin-top:6px}
-.defBtn{
-  min-height:56px;text-align:left;padding:8px 10px;
-  background:#081a14;border:1px solid rgba(112,207,255,.14);
-  border-left:3px solid rgba(112,207,255,.42)
-}
-.defBtn b{color:#9fe1ff}
-.defBtn small{display:block;margin-top:3px;color:#91a79b;font-size:9px;font-weight:400;line-height:1.28}
-.defBtn.selected{
-  background:#0a2530;border-color:rgba(112,207,255,.60);border-left-color:#70cfff;
-  box-shadow:0 0 24px rgba(112,207,255,.13)
-}
-.revealPanel{margin-top:7px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.revealItem{padding:7px;border-radius:10px;background:#07150f;border:1px solid rgba(255,255,255,.06);text-align:left}
-.revealItem span{display:block;color:#83998d;font-size:7px;letter-spacing:.11em}
-.revealItem b{display:block;margin-top:2px;color:#f4dc85;font-size:10px}
-.counterPrompt{
-  padding:12px;border-radius:13px;background:linear-gradient(145deg,#302407,#171207);
-  border:1px solid rgba(246,207,93,.38);box-shadow:0 0 30px rgba(246,207,93,.12);
-  animation:counterPulse 1.1s ease-in-out infinite
-}
-.counterPrompt strong{display:block;color:#ffe270;font-size:18px}
-.counterPrompt p{margin:5px 0 9px;color:#d6cba3;font-size:11px}
-.counterActions{display:grid;grid-template-columns:1fr auto;gap:6px}
-.counterTake{background:linear-gradient(135deg,#b37e11,#f2cf5c)!important;color:#171002!important;border:0!important}
-.counterSkip{min-width:82px}
-@keyframes counterPulse{
-  0%,100%{box-shadow:0 0 0 rgba(246,207,93,0)}
-  50%{box-shadow:0 0 32px rgba(246,207,93,.18)}
-}
+.previewArtwork img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease,filter .35s ease}
+.previewArtwork::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(3,10,7,.56) 100%);pointer-events:none}
+.fighterPreview:hover .previewArtwork img{transform:scale(1.025);filter:contrast(1.03) saturate(1.04)}
 @media(max-width:599px){
-  .atkBtn,.defBtn{min-height:48px!important}
-  .phaseMessage{font-size:9px;min-height:24px}
-  .revealPanel{gap:4px}.revealItem{padding:6px}
+  .previewArtwork{aspect-ratio:16/8.7;margin-bottom:7px;border-radius:10px}
 }
 
 </style></head><body>
@@ -3027,55 +2909,40 @@ body:not(.battle-mode) #battleScreen{
 <div id="screenFlash"></div>
 <div id="combatFx"><div class="fxText"></div></div>
 <div class="app">
-
-<div style="display:none">
-  <select id="p1"></select>
-  <select id="p2"></select>
-</div>
-
-<section id="battleScreen" class="screen active">
-  <div class="battleTop">
-    <button id="changeFighters" class="backBtn">← Change Fighters</button>
-    <div class="battleTitle">JURASSIC TOY BATTLE</div>
-    <div style="display:flex;gap:6px">
-      <button id="historyFromBattle" class="historyBtn">📜</button>
-      <button id="soundToggleBattle" class="soundBtn">🔊</button>
-    </div>
+<section id="selectionScreen" class="screen active">
+  <div class="selectionHero">
+    <h1>JURASSIC TOY BATTLE</h1>
+    <h2>CHOOSE YOUR FIGHTERS</h2>
+    <div class="muted">Build the matchup, compare strengths, then enter the arena.</div>
   </div>
 
-
-  <div id="mobileVsStrip" class="mobileVsStrip">
-    <div id="mobileF1" class="mobileFighter"></div>
-    <div class="mobileVs">VS</div>
-    <div id="mobileF2" class="mobileFighter"></div>
-  </div>
-
-  <div id="matchEvent"></div>
-
-  <section class="arena">
-    <div id="c1" class="card"></div>
-    <div class="center">
-      <div id="turn" class="big">Battle</div>
-      <div class="dice">
-        <div class="die a" id="ad">⚅</div>
-        <div class="die d" id="dd">⚄</div>
-      </div>
-      <button class="roll" id="roll">ROLL ATTACK</button>
-      <div class="muted">Choose a strike first</div>
+  <section class="panel selectionGrid">
+    <div class="fighterSelectWrap">
+      <label>Fighter 1</label>
+      <select id="p1"></select>
+      <div id="preview1" class="fighterPreview empty">Select fighter</div>
     </div>
-    <div id="c2" class="card"></div>
-  </section>
 
-  <section class="result" id="result">
-    <h3>Battle Result</h3>
-    Start a battle.
-  </section>
+    <div class="vsColumn">
+      <div class="vsLine"></div>
+      <div class="vsOrb">VS</div>
+      <div class="vsLine"></div>
+    </div>
 
-  <section class="panel battleLog">
-    <button id="rematch">Rematch</button>
-    <h3>Battle Log</h3>
-    <div id="history"></div>
+    <div class="fighterSelectWrap">
+      <label>Fighter 2</label>
+      <select id="p2"></select>
+      <div id="preview2" class="fighterPreview empty">Select fighter</div>
+    </div>
   </section>
+  <div class="matchupStatus">Ready for battle</div>
+
+  <div class="selectionFooter">
+    <button class="primary" id="start">ENTER BATTLE ARENA</button>
+    <button id="historyFromSelect" class="historyBtn">📜 Battle History</button>
+    <button id="soundToggleSelect" class="soundBtn">🔊 Sound On</button>
+  </div>
+  <div class="selectionHint">Fighter stats and abilities remain visible before battle so you can choose the matchup deliberately.</div>
 </section>
 <section id="historyScreen" class="screen">
   <div class="historyHeader">
@@ -3090,690 +2957,78 @@ body:not(.battle-mode) #battleScreen{
 <audio id="sfxNormalHit" preload="auto" src="assets/audio/normal_hit.mp3"></audio>
 <audio id="sfxBrachioStomp" preload="auto" src="assets/audio/brachiosaurus_stomp.mp3"></audio>
 <script>
-function restoreFighterSelection(){
-  const p1=document.getElementById("p1");
-  const p2=document.getElementById("p2");
-  const a=sessionStorage.getItem("jt_p1");
-  const b=sessionStorage.getItem("jt_p2");
-  if(p1&&a!==null)p1.value=a;
-  if(p2&&b!==null)p2.value=b;
-}
+const DINO_IMAGES={"Scorpios Rex": "assets/scorpios_rex.webp", "Indominus Rex": "assets/indominus_rex.webp", "Pteranodon": "assets/pteranodon.webp", "Brachiosaurus": "assets/brachiosaurus.webp", "Suchomimus": "assets/suchomimus.webp", "T. rex": "assets/trex.webp", "Kentrosaurus": "assets/kentrosaurus.webp", "Giganotosaurus": "assets/giganotosaurus.webp", "Spinosaurus – Tail Strike": "assets/spinosaurus_tail_strike.webp", "Spinosaurus – Extreme Damage": "assets/spinosaurus_extreme_damage.webp", "Becklespinax": "assets/becklespinax.webp", "Carnotaurus": "assets/carnotaurus.webp", "Distortus Rex": "assets/distortus_rex.webp", "Stegosaurus": "assets/stegosaurus.webp", "Therizinosaurus": "assets/therizinosaurus.webp", "Minotaurus": "assets/minotaurus.webp", "Eotriceratops": "assets/eotriceratops.webp", "Ceratosaurus male": "assets/ceratosaurus_male.webp", "Ceratosaurus female": "assets/ceratosaurus_female.webp", "Tyrannotitan": "assets/tyrannotitan.webp", "Baryonyx": "assets/baryonyx.webp", "Gorgosaurus": "assets/gorgosaurus.webp", "Quetzalcoatlus": "assets/quetzalcoatlus.webp", "Allosaurus": "assets/allosaurus.webp"};
+function dinoImage(name){return DINO_IMAGES[name]||"";}
+const dinos=[{"name": "Scorpios Rex", "atk": 29, "def": 17, "spd": 9, "trait": "Unstable Predator", "attacks": [{"n": "Savage Bite", "power": 11, "acc": 0, "kind": "bite", "effect": "none"}, {"n": "Venom Quills", "power": 7, "acc": 2, "kind": "ranged", "effect": "poison"}, {"n": "Pounce", "power": 9, "acc": 1, "kind": "speed", "effect": "fastbonus"}], "abilities": [{"name": "Toxic Blood", "type": "Passive", "text": "Whenever Scorpios falls below 50 HP, poison damage increases by +2."}, {"name": "Quill Burst", "type": "Trigger", "text": "Natural attack 6: Venom Quills deal +8 extra damage and poison."}, {"name": "Feral Frenzy", "type": "Signature", "text": "After taking 20+ damage in one hit, gain +5 ATK on the next turn."}]}, {"name": "Indominus Rex", "atk": 35, "def": 25, "spd": 8, "trait": "Adaptive Hunter", "attacks": [{"n": "Crushing Bite", "power": 14, "acc": -1, "kind": "bite", "effect": "heavy"}, {"n": "Raking Claws", "power": 10, "acc": 1, "kind": "claw", "effect": "pierce4"}, {"n": "Ambush", "power": 9, "acc": 2, "kind": "speed", "effect": "fastbonus8"}], "abilities": [{"name": "Adaptive Camouflage", "type": "Passive", "text": "The first attack made against Indominus each battle suffers -3 ATK."}, {"name": "Predatory Adaptation", "type": "Trigger", "text": "After blocking an attack, gain +3 ATK on the next turn."}, {"name": "Apex Ambush", "type": "Signature", "text": "Ambush gains another +6 damage against slower dinosaurs."}]}, {"name": "Pteranodon", "atk": 16, "def": 8, "spd": 10, "trait": "Aerial Agility", "attacks": [{"n": "Dive Strike", "power": 10, "acc": 2, "kind": "aerial", "effect": "fastbonus"}, {"n": "Beak Jab", "power": 7, "acc": 3, "kind": "bite", "effect": "none"}, {"n": "Wing Buffet", "power": 5, "acc": 2, "kind": "control", "effect": "slow2"}], "abilities": [{"name": "Airborne", "type": "Passive", "text": "Against SPD 5 or lower, gain +2 defence."}, {"name": "Perfect Dive", "type": "Trigger", "text": "Dive Strike on attack 5–6 gains +5 damage."}, {"name": "Escape Climb", "type": "Signature", "text": "After being hit for 15+, gain +4 defence next turn."}]}, {"name": "Brachiosaurus", "atk": 23, "def": 30, "spd": 2, "trait": "Colossal Mass", "attacks": [{"n": "Stomp", "power": 20, "acc": -6, "kind": "stomp", "effect": "brachio_stomp"}, {"n": "Body Slam", "power": 12, "acc": 0, "kind": "body", "effect": "none"}, {"n": "Tail Sweep", "power": 9, "acc": 1, "kind": "tail", "effect": "anti_fast"}], "abilities": [{"name": "Colossal", "type": "Passive", "text": "Ignore the first 4 damage from every successful hit."}, {"name": "Earthshaker", "type": "Trigger", "text": "Stomp is devastating but difficult to land: it needs a strong roll, especially against fast dinosaurs. A natural 6 deals +10 damage."}, {"name": "Unmovable", "type": "Signature", "text": "Cannot have defence reduced below its base DEF by more than 3."}]}, {"name": "Suchomimus", "atk": 26, "def": 18, "spd": 7, "trait": "Hooked Claws", "attacks": [{"n": "Bite", "power": 9, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Hook Claw", "power": 12, "acc": 0, "kind": "claw", "effect": "die56bonus"}, {"n": "Lunge", "power": 10, "acc": 1, "kind": "speed", "effect": "fastbonus4"}], "abilities": [{"name": "Hooked Claws", "type": "Passive", "text": "Claw attacks ignore 2 DEF."}, {"name": "Rend", "type": "Trigger", "text": "Hook Claw on 5–6 deals +5 extra damage."}, {"name": "River Hunter", "type": "Signature", "text": "Against Baryonyx or Spinosaurus, gain +3 ATK."}]}, {"name": "T. rex", "atk": 34, "def": 24, "spd": 5, "trait": "Bone-Crushing Bite", "attacks": [{"n": "Crushing Bite", "power": 16, "acc": -1, "kind": "bite", "effect": "heavy"}, {"n": "Head Ram", "power": 10, "acc": 1, "kind": "body", "effect": "defdown3"}, {"n": "Power Charge", "power": 13, "acc": -2, "kind": "charge", "effect": "stun_chance"}], "abilities": [{"name": "Bone Crusher", "type": "Passive", "text": "Bite attacks deal at least 8 damage when they hit."}, {"name": "Devastating Jaws", "type": "Trigger", "text": "Natural 6 on Crushing Bite adds +10 damage."}, {"name": "Dominance Roar", "type": "Signature", "text": "The first time T. rex drops below 50 HP, opponent loses 3 ATK next turn."}]}, {"name": "Kentrosaurus", "atk": 25, "def": 30, "spd": 4, "trait": "Spiked Defence", "attacks": [{"n": "Tail Spike", "power": 15, "acc": -1, "kind": "tail", "effect": "heavy"}, {"n": "Body Check", "power": 8, "acc": 1, "kind": "body", "effect": "none"}, {"n": "Spinning Defence", "power": 6, "acc": 2, "kind": "defensive", "effect": "guard6"}], "abilities": [{"name": "Spiked Defence", "type": "Passive", "text": "If defence beats attack by 4+, attacker takes 6 damage."}, {"name": "Counter Swing", "type": "Trigger", "text": "After a successful block, next Tail Spike gains +5 power."}, {"name": "Spine Wall", "type": "Signature", "text": "Fast attackers (SPD 8+) suffer -3 ATK against Kentrosaurus."}]}, {"name": "Giganotosaurus", "atk": 33, "def": 22, "spd": 5, "trait": "Sustained Predator", "attacks": [{"n": "Slicing Bite", "power": 13, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Maul", "power": 16, "acc": -2, "kind": "bite", "effect": "heavy"}, {"n": "Rush", "power": 11, "acc": 0, "kind": "speed", "effect": "fastbonus5"}], "abilities": [{"name": "Relentless", "type": "Passive", "text": "Successful bites deal at least 7 damage."}, {"name": "Momentum", "type": "Trigger", "text": "After dealing 15+ damage, gain +3 ATK next turn."}, {"name": "Apex Pressure", "type": "Signature", "text": "Against T. rex or Indominus, all successful hits gain +3 damage."}]}, {"name": "Spinosaurus – Tail Strike", "atk": 30, "def": 20, "spd": 6, "trait": "Reach & Power", "attacks": [{"n": "Long Bite", "power": 11, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Tail Strike", "power": 15, "acc": 0, "kind": "tail", "effect": "slow2"}, {"n": "Claw Hook", "power": 12, "acc": 0, "kind": "claw", "effect": "pierce3"}], "abilities": [{"name": "Long Reach", "type": "Passive", "text": "Tail attacks ignore 2 DEF."}, {"name": "Knockback", "type": "Trigger", "text": "Tail Strike dealing 12+ damage lowers enemy SPD by 2 next turn."}, {"name": "Rival Killer", "type": "Signature", "text": "Against T. rex, Tail Strike gains +5 damage."}]}, {"name": "Spinosaurus – Extreme Damage", "atk": 32, "def": 20, "spd": 6, "trait": "Extreme Damage", "attacks": [{"n": "Bite", "power": 12, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Claw Smash", "power": 14, "acc": 0, "kind": "claw", "effect": "none"}, {"n": "Extreme Attack", "power": 19, "acc": -3, "kind": "heavy", "effect": "heavy"}], "abilities": [{"name": "Heavy Frame", "type": "Passive", "text": "Reduce incoming body/charge damage by 3."}, {"name": "Brutal Follow-through", "type": "Trigger", "text": "After a 15+ damage hit, next attack gains +4 power."}, {"name": "Extreme Damage", "type": "Signature", "text": "Extreme Attack criticals gain +12 damage."}]}, {"name": "Becklespinax", "atk": 28, "def": 19, "spd": 7, "trait": "Rush Predator", "attacks": [{"n": "Bite", "power": 10, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Rush Attack", "power": 13, "acc": 0, "kind": "speed", "effect": "fastbonus4"}, {"n": "Claw Slash", "power": 11, "acc": 1, "kind": "claw", "effect": "none"}], "abilities": [{"name": "Fast Start", "type": "Passive", "text": "First successful attack gains +5 damage."}, {"name": "Spine Rush", "type": "Trigger", "text": "Rush Attack on 5–6 gains +5 damage."}, {"name": "Pressure Hunter", "type": "Signature", "text": "Gain +3 ATK against opponents below 40 HP."}]}, {"name": "Carnotaurus", "atk": 26, "def": 15, "spd": 9, "trait": "Explosive Speed", "attacks": [{"n": "Charge", "power": 14, "acc": -1, "kind": "charge", "effect": "fastbonus5"}, {"n": "Bite", "power": 10, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Horn Ram", "power": 11, "acc": 0, "kind": "horn", "effect": "defdown2"}], "abilities": [{"name": "Sprinter", "type": "Passive", "text": "If faster than opponent, Charge gains +4 damage."}, {"name": "Horn Impact", "type": "Trigger", "text": "Horn Ram on 5–6 reduces enemy DEF by 2 next turn."}, {"name": "Hit and Run", "type": "Signature", "text": "After a successful Charge, gain +3 DEF next turn."}]}, {"name": "Distortus Rex", "atk": 36, "def": 27, "spd": 7, "trait": "Mutation", "attacks": [{"n": "Mutant Bite", "power": 16, "acc": -1, "kind": "bite", "effect": "heavy"}, {"n": "Twisted Claw", "power": 13, "acc": 1, "kind": "claw", "effect": "pierce4"}, {"n": "Mutation Burst", "power": 11, "acc": 0, "kind": "mutation", "effect": "mutation"}], "abilities": [{"name": "Unstable Mutation", "type": "Passive", "text": "Mutation Burst always produces a secondary effect."}, {"name": "Regenerative Mutation", "type": "Trigger", "text": "On doubles 4-4, heal an extra 6 HP."}, {"name": "Monstrous Adaptation", "type": "Signature", "text": "Below 40 HP, gain +4 ATK and +2 DEF."}]}, {"name": "Stegosaurus", "atk": 31, "def": 32, "spd": 3, "trait": "Thagomizer", "attacks": [{"n": "Thagomizer", "power": 18, "acc": -2, "kind": "tail", "effect": "heavy"}, {"n": "Tail Sweep", "power": 12, "acc": 1, "kind": "tail", "effect": "anti_fast"}, {"n": "Brace", "power": 5, "acc": 2, "kind": "defensive", "effect": "guard8"}], "abilities": [{"name": "Armoured Back", "type": "Passive", "text": "Bite attacks against Stegosaurus suffer -4 ATK."}, {"name": "Perfect Thagomizer", "type": "Trigger", "text": "Thagomizer on natural 6 adds +12 damage."}, {"name": "Punishing Counter", "type": "Signature", "text": "After blocking a bite, next tail attack gains +5 power."}]}, {"name": "Therizinosaurus", "atk": 32, "def": 17, "spd": 6, "trait": "Giant Claws", "attacks": [{"n": "Claw Slash", "power": 16, "acc": -1, "kind": "claw", "effect": "heavy"}, {"n": "Double Rake", "power": 13, "acc": 1, "kind": "claw", "effect": "die56bonus"}, {"n": "Shove", "power": 8, "acc": 2, "kind": "control", "effect": "defdown3"}], "abilities": [{"name": "Reach", "type": "Passive", "text": "Claw attacks ignore 3 DEF."}, {"name": "Raking Combo", "type": "Trigger", "text": "Double Rake on 5–6 gains +6 damage."}, {"name": "Territorial Fury", "type": "Signature", "text": "Against T. rex or Giganotosaurus, claw attacks gain +4 damage."}]}, {"name": "Minotaurus", "atk": 26, "def": 25, "spd": 5, "trait": "Armoured Charge", "attacks": [{"n": "Headbutt", "power": 12, "acc": 0, "kind": "body", "effect": "none"}, {"n": "Charge", "power": 14, "acc": -1, "kind": "charge", "effect": "heavy"}, {"n": "Defensive Ram", "power": 8, "acc": 1, "kind": "defensive", "effect": "guard5"}], "abilities": [{"name": "Armoured Skull", "type": "Passive", "text": "Reduce incoming charge/body damage by 4."}, {"name": "Rebound", "type": "Trigger", "text": "After blocking, Headbutt gains +4 power next turn."}, {"name": "Fortified Charge", "type": "Signature", "text": "Defensive Ram also grants +5 DEF next turn."}]}, {"name": "Eotriceratops", "atk": 27, "def": 28, "spd": 4, "trait": "Horned Tank", "attacks": [{"n": "Horn Charge", "power": 15, "acc": -3, "kind": "horn", "effect": "eotri_charge"}, {"n": "Gore", "power": 11, "acc": 0, "kind": "horn", "effect": "none"}, {"n": "Shield Bash", "power": 7, "acc": 1, "kind": "defensive", "effect": "guard4"}], "abilities": [{"name": "Frill Guard", "type": "Passive", "text": "Bite attacks suffer -2 ATK."}, {"name": "Horn Breaker", "type": "Trigger", "text": "Horn Charge on a natural 6 deals +5 damage."}, {"name": "Stand Ground", "type": "Signature", "text": "Below 40 HP, gain +2 DEF."}]}, {"name": "Ceratosaurus male", "atk": 27, "def": 18, "spd": 7, "trait": "Aggression", "attacks": [{"n": "Bite", "power": 11, "acc": 1, "kind": "bite", "effect": "lowhp4"}, {"n": "Claw Slash", "power": 10, "acc": 1, "kind": "claw", "effect": "none"}, {"n": "Frenzy", "power": 15, "acc": -2, "kind": "bite", "effect": "lowhp5"}], "abilities": [{"name": "Aggression", "type": "Passive", "text": "Below 50 HP, bite attacks gain +4 damage."}, {"name": "Blood Frenzy", "type": "Trigger", "text": "Natural 6 after dropping below 50 HP adds +7 damage."}, {"name": "Territorial", "type": "Signature", "text": "Against another Ceratosaurus, gain +3 ATK."}]}, {"name": "Ceratosaurus female", "atk": 26, "def": 17, "spd": 8, "trait": "Quick Hunter", "attacks": [{"n": "Quick Bite", "power": 9, "acc": 3, "kind": "bite", "effect": "none"}, {"n": "Flank", "power": 12, "acc": 0, "kind": "speed", "effect": "fastbonus5"}, {"n": "Claw Swipe", "power": 10, "acc": 1, "kind": "claw", "effect": "none"}], "abilities": [{"name": "Quick Hunter", "type": "Passive", "text": "If faster, Flank gains +5 damage."}, {"name": "Evasive Step", "type": "Trigger", "text": "After a defence roll of 6, gain +3 ATK next turn."}, {"name": "Pack Instinct", "type": "Signature", "text": "Against larger predators (ATK 30+), gain +2 DEF."}]}, {"name": "Tyrannotitan", "atk": 32, "def": 22, "spd": 6, "trait": "Bone Crusher", "attacks": [{"n": "Bone Crusher", "power": 16, "acc": -1, "kind": "bite", "effect": "min10"}, {"n": "Slicing Bite", "power": 12, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Rush Bite", "power": 13, "acc": 0, "kind": "speed", "effect": "fastbonus4"}], "abilities": [{"name": "Bone Crusher", "type": "Passive", "text": "Bone Crusher hits deal at least 10 damage."}, {"name": "Predatory Rush", "type": "Trigger", "text": "Rush Bite on 5–6 gains +5 damage."}, {"name": "Finisher", "type": "Signature", "text": "Against opponents below 30 HP, bites gain +5 damage."}]}, {"name": "Baryonyx", "atk": 25, "def": 17, "spd": 7, "trait": "Claw Rake", "attacks": [{"n": "Bite", "power": 9, "acc": 2, "kind": "bite", "effect": "none"}, {"n": "Claw Rake", "power": 12, "acc": 1, "kind": "claw", "effect": "reroll1"}, {"n": "Hook & Pull", "power": 10, "acc": 1, "kind": "claw", "effect": "defdown2"}], "abilities": [{"name": "Claw Specialist", "type": "Passive", "text": "Claw attacks ignore 2 DEF."}, {"name": "Claw Rake", "type": "Trigger", "text": "Attack roll 1 on Claw Rake rerolls once."}, {"name": "Hook and Pull", "type": "Signature", "text": "A successful Hook & Pull reduces enemy DEF by 2 next turn."}]}, {"name": "Gorgosaurus", "atk": 28, "def": 19, "spd": 8, "trait": "Pursuit Predator", "attacks": [{"n": "Pursuit Bite", "power": 12, "acc": 1, "kind": "bite", "effect": "fastbonus5"}, {"n": "Rush", "power": 11, "acc": 1, "kind": "speed", "effect": "none"}, {"n": "Maul", "power": 15, "acc": -2, "kind": "bite", "effect": "heavy"}], "abilities": [{"name": "Pursuit Predator", "type": "Passive", "text": "Against slower opponents, bite attacks gain +5 damage."}, {"name": "Chase Down", "type": "Trigger", "text": "Rush on 5–6 gains +4 damage."}, {"name": "Finishing Instinct", "type": "Signature", "text": "Opponent below 35 HP: gain +3 ATK."}]}, {"name": "Quetzalcoatlus", "atk": 21, "def": 10, "spd": 9, "trait": "Aerial Strike", "attacks": [{"n": "Aerial Strike", "power": 13, "acc": 1, "kind": "aerial", "effect": "vs_tank5"}, {"n": "Beak Spear", "power": 11, "acc": 2, "kind": "bite", "effect": "pierce2"}, {"n": "Wing Slam", "power": 8, "acc": 1, "kind": "control", "effect": "slow2"}], "abilities": [{"name": "Aerial Reach", "type": "Passive", "text": "Against DEF 28+, Aerial Strike gains +5 damage."}, {"name": "Spear Dive", "type": "Trigger", "text": "Beak Spear on 5–6 ignores another 3 DEF."}, {"name": "Take Flight", "type": "Signature", "text": "After taking 15+ damage, gain +4 DEF next turn."}]}, {"name": "Allosaurus", "atk": 29, "def": 19, "spd": 7, "trait": "Serrated Bite", "attacks": [{"n": "Serrated Bite", "power": 13, "acc": 1, "kind": "bite", "effect": "crit10"}, {"n": "Claw Rake", "power": 11, "acc": 1, "kind": "claw", "effect": "none"}, {"n": "Ambush Lunge", "power": 12, "acc": 0, "kind": "speed", "effect": "fastbonus4"}], "abilities": [{"name": "Serrated Teeth", "type": "Passive", "text": "Successful bites deal +2 damage."}, {"name": "Deep Cut", "type": "Trigger", "text": "Natural 6 Serrated Bite adds +10 damage."}, {"name": "Ambush Hunter", "type": "Signature", "text": "If faster than opponent, Ambush Lunge gains +4 damage."}]}];
+const $=s=>document.querySelector(s);
+const HIST_KEY="jurassicBattleHistoryV1";
+let soundOn=localStorage.getItem("jurassicSound")!=="off";
 
-const dinos=[{"name": "Scorpios Rex", "atk": 29, "def": 17, "spd": 9, "trait": "Unstable Predator", "attacks": [{"n": "Savage Bite", "power": 11, "acc": 0, "kind": "bite", "effect": "none"}, {"n": "Venom Quills", "power": 7, "acc": 2, "kind": "ranged", "effect": "poison"}, {"n": "Pounce", "power": 9, "acc": 1, "kind": "speed", "effect": "fastbonus"}], "abilities": [{"name": "Toxic Blood", "type": "Passive", "text": "Whenever Scorpios falls below 50 HP, poison damage increases by +2."}, {"name": "Quill Burst", "type": "Trigger", "text": "Natural attack 6: Venom Quills deal +8 extra damage and poison."}, {"name": "Feral Frenzy", "type": "Signature", "text": "After taking 20+ damage in one hit, gain +5 ATK on the next turn."}]}, {"name": "Indominus Rex", "atk": 35, "def": 25, "spd": 8, "trait": "Adaptive Hunter", "attacks": [{"n": "Crushing Bite", "power": 14, "acc": -1, "kind": "bite", "effect": "heavy"}, {"n": "Raking Claws", "power": 10, "acc": 1, "kind": "claw", "effect": "pierce4"}, {"n": "Ambush", "power": 9, "acc": 2, "kind": "speed", "effect": "fastbonus8"}], "abilities": [{"name": "Adaptive Camouflage", "type": "Passive", "text": "The first attack made against Indominus each battle suffers -3 ATK."}, {"name": "Predatory Adaptation", "type": "Trigger", "text": "After blocking an attack, gain +3 ATK on the next turn."}, {"name": "Apex Ambush", "type": "Signature", "text": "Ambush gains another +6 damage against slower dinosaurs."}]}, {"name": "Pteranodon", "atk": 16, "def": 8, "spd": 10, "trait": "Aerial Agility", "attacks": [{"n": "Dive Strike", "power": 10, "acc": 2, "kind": "aerial", "effect": "fastbonus"}, {"n": "Beak Jab", "power": 7, "acc": 3, "kind": "bite", "effect": "none"}, {"n": "Wing Buffet", "power": 5, "acc": 2, "kind": "control", "effect": "slow2"}], "abilities": [{"name": "Airborne", "type": "Passive", "text": "Against SPD 5 or lower, gain +2 defence."}, {"name": "Perfect Dive", "type": "Trigger", "text": "Dive Strike on attack 5–6 gains +5 damage."}, {"name": "Escape Climb", "type": "Signature", "text": "After being hit for 15+, gain +4 defence next turn."}]}, {"name": "Brachiosaurus", "atk": 23, "def": 30, "spd": 2, "trait": "Colossal Mass", "attacks": [{"n": "Stomp", "power": 20, "acc": -6, "kind": "stomp", "effect": "brachio_stomp"}, {"n": "Body Slam", "power": 12, "acc": 0, "kind": "body", "effect": "none"}, {"n": "Tail Sweep", "power": 9, "acc": 1, "kind": "tail", "effect": "anti_fast"}], "abilities": [{"name": "Colossal", "type": "Passive", "text": "Ignore the first 4 damage from every successful hit."}, {"name": "Earthshaker", "type": "Trigger", "text": "Stomp is devastating but difficult to land: it needs a strong roll, especially against fast dinosaurs. A natural 6 deals +10 damage."}, {"name": "Unmovable", "type": "Signature", "text": "Cannot have defence reduced below its base DEF by more than 3."}]}, {"name": "Suchomimus", "atk": 26, "def": 18, "spd": 7, "trait": "Hooked Claws", "attacks": [{"n": "Bite", "power": 9, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Hook Claw", "power": 12, "acc": 0, "kind": "claw", "effect": "die56bonus"}, {"n": "Lunge", "power": 10, "acc": 1, "kind": "speed", "effect": "fastbonus4"}], "abilities": [{"name": "Hooked Claws", "type": "Passive", "text": "Claw attacks ignore 2 DEF."}, {"name": "Rend", "type": "Trigger", "text": "Hook Claw on 5–6 deals +5 extra damage."}, {"name": "River Hunter", "type": "Signature", "text": "Against Baryonyx or Spinosaurus, gain +3 ATK."}]}, {"name": "T. rex", "atk": 34, "def": 24, "spd": 5, "trait": "Bone-Crushing Bite", "attacks": [{"n": "Crushing Bite", "power": 16, "acc": -1, "kind": "bite", "effect": "heavy"}, {"n": "Head Ram", "power": 10, "acc": 1, "kind": "body", "effect": "defdown3"}, {"n": "Power Charge", "power": 13, "acc": -2, "kind": "charge", "effect": "stun_chance"}], "abilities": [{"name": "Bone Crusher", "type": "Passive", "text": "Bite attacks deal at least 8 damage when they hit."}, {"name": "Devastating Jaws", "type": "Trigger", "text": "Natural 6 on Crushing Bite adds +10 damage."}, {"name": "Dominance Roar", "type": "Signature", "text": "The first time T. rex drops below 50 HP, opponent loses 3 ATK next turn."}]}, {"name": "Kentrosaurus", "atk": 25, "def": 30, "spd": 4, "trait": "Spiked Defence", "attacks": [{"n": "Tail Spike", "power": 15, "acc": -1, "kind": "tail", "effect": "heavy"}, {"n": "Body Check", "power": 8, "acc": 1, "kind": "body", "effect": "none"}, {"n": "Spinning Defence", "power": 6, "acc": 2, "kind": "defensive", "effect": "guard6"}], "abilities": [{"name": "Spiked Defence", "type": "Passive", "text": "If defence beats attack by 4+, attacker takes 6 damage."}, {"name": "Counter Swing", "type": "Trigger", "text": "After a successful block, next Tail Spike gains +5 power."}, {"name": "Spine Wall", "type": "Signature", "text": "Fast attackers (SPD 8+) suffer -3 ATK against Kentrosaurus."}]}, {"name": "Giganotosaurus", "atk": 33, "def": 22, "spd": 5, "trait": "Sustained Predator", "attacks": [{"n": "Slicing Bite", "power": 13, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Maul", "power": 16, "acc": -2, "kind": "bite", "effect": "heavy"}, {"n": "Rush", "power": 11, "acc": 0, "kind": "speed", "effect": "fastbonus5"}], "abilities": [{"name": "Relentless", "type": "Passive", "text": "Successful bites deal at least 7 damage."}, {"name": "Momentum", "type": "Trigger", "text": "After dealing 15+ damage, gain +3 ATK next turn."}, {"name": "Apex Pressure", "type": "Signature", "text": "Against T. rex or Indominus, all successful hits gain +3 damage."}]}, {"name": "Spinosaurus – Tail Strike", "atk": 30, "def": 20, "spd": 6, "trait": "Reach & Power", "attacks": [{"n": "Long Bite", "power": 11, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Tail Strike", "power": 15, "acc": 0, "kind": "tail", "effect": "slow2"}, {"n": "Claw Hook", "power": 12, "acc": 0, "kind": "claw", "effect": "pierce3"}], "abilities": [{"name": "Long Reach", "type": "Passive", "text": "Tail attacks ignore 2 DEF."}, {"name": "Knockback", "type": "Trigger", "text": "Tail Strike dealing 12+ damage lowers enemy SPD by 2 next turn."}, {"name": "Rival Killer", "type": "Signature", "text": "Against T. rex, Tail Strike gains +5 damage."}]}, {"name": "Spinosaurus – Extreme Damage", "atk": 32, "def": 20, "spd": 6, "trait": "Extreme Damage", "attacks": [{"n": "Bite", "power": 12, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Claw Smash", "power": 14, "acc": 0, "kind": "claw", "effect": "none"}, {"n": "Extreme Attack", "power": 19, "acc": -3, "kind": "heavy", "effect": "heavy"}], "abilities": [{"name": "Heavy Frame", "type": "Passive", "text": "Reduce incoming body/charge damage by 3."}, {"name": "Brutal Follow-through", "type": "Trigger", "text": "After a 15+ damage hit, next attack gains +4 power."}, {"name": "Extreme Damage", "type": "Signature", "text": "Extreme Attack criticals gain +12 damage."}]}, {"name": "Becklespinax", "atk": 28, "def": 19, "spd": 7, "trait": "Rush Predator", "attacks": [{"n": "Bite", "power": 10, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Rush Attack", "power": 13, "acc": 0, "kind": "speed", "effect": "fastbonus4"}, {"n": "Claw Slash", "power": 11, "acc": 1, "kind": "claw", "effect": "none"}], "abilities": [{"name": "Fast Start", "type": "Passive", "text": "First successful attack gains +5 damage."}, {"name": "Spine Rush", "type": "Trigger", "text": "Rush Attack on 5–6 gains +5 damage."}, {"name": "Pressure Hunter", "type": "Signature", "text": "Gain +3 ATK against opponents below 40 HP."}]}, {"name": "Carnotaurus", "atk": 26, "def": 15, "spd": 9, "trait": "Explosive Speed", "attacks": [{"n": "Charge", "power": 14, "acc": -1, "kind": "charge", "effect": "fastbonus5"}, {"n": "Bite", "power": 10, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Horn Ram", "power": 11, "acc": 0, "kind": "horn", "effect": "defdown2"}], "abilities": [{"name": "Sprinter", "type": "Passive", "text": "If faster than opponent, Charge gains +4 damage."}, {"name": "Horn Impact", "type": "Trigger", "text": "Horn Ram on 5–6 reduces enemy DEF by 2 next turn."}, {"name": "Hit and Run", "type": "Signature", "text": "After a successful Charge, gain +3 DEF next turn."}]}, {"name": "Distortus Rex", "atk": 36, "def": 27, "spd": 7, "trait": "Mutation", "attacks": [{"n": "Mutant Bite", "power": 16, "acc": -1, "kind": "bite", "effect": "heavy"}, {"n": "Twisted Claw", "power": 13, "acc": 1, "kind": "claw", "effect": "pierce4"}, {"n": "Mutation Burst", "power": 11, "acc": 0, "kind": "mutation", "effect": "mutation"}], "abilities": [{"name": "Unstable Mutation", "type": "Passive", "text": "Mutation Burst always produces a secondary effect."}, {"name": "Regenerative Mutation", "type": "Trigger", "text": "On doubles 4-4, heal an extra 6 HP."}, {"name": "Monstrous Adaptation", "type": "Signature", "text": "Below 40 HP, gain +4 ATK and +2 DEF."}]}, {"name": "Stegosaurus", "atk": 31, "def": 32, "spd": 3, "trait": "Thagomizer", "attacks": [{"n": "Thagomizer", "power": 18, "acc": -2, "kind": "tail", "effect": "heavy"}, {"n": "Tail Sweep", "power": 12, "acc": 1, "kind": "tail", "effect": "anti_fast"}, {"n": "Brace", "power": 5, "acc": 2, "kind": "defensive", "effect": "guard8"}], "abilities": [{"name": "Armoured Back", "type": "Passive", "text": "Bite attacks against Stegosaurus suffer -4 ATK."}, {"name": "Perfect Thagomizer", "type": "Trigger", "text": "Thagomizer on natural 6 adds +12 damage."}, {"name": "Punishing Counter", "type": "Signature", "text": "After blocking a bite, next tail attack gains +5 power."}]}, {"name": "Therizinosaurus", "atk": 32, "def": 17, "spd": 6, "trait": "Giant Claws", "attacks": [{"n": "Claw Slash", "power": 16, "acc": -1, "kind": "claw", "effect": "heavy"}, {"n": "Double Rake", "power": 13, "acc": 1, "kind": "claw", "effect": "die56bonus"}, {"n": "Shove", "power": 8, "acc": 2, "kind": "control", "effect": "defdown3"}], "abilities": [{"name": "Reach", "type": "Passive", "text": "Claw attacks ignore 3 DEF."}, {"name": "Raking Combo", "type": "Trigger", "text": "Double Rake on 5–6 gains +6 damage."}, {"name": "Territorial Fury", "type": "Signature", "text": "Against T. rex or Giganotosaurus, claw attacks gain +4 damage."}]}, {"name": "Minotaurus", "atk": 26, "def": 25, "spd": 5, "trait": "Armoured Charge", "attacks": [{"n": "Headbutt", "power": 12, "acc": 0, "kind": "body", "effect": "none"}, {"n": "Charge", "power": 14, "acc": -1, "kind": "charge", "effect": "heavy"}, {"n": "Defensive Ram", "power": 8, "acc": 1, "kind": "defensive", "effect": "guard5"}], "abilities": [{"name": "Armoured Skull", "type": "Passive", "text": "Reduce incoming charge/body damage by 4."}, {"name": "Rebound", "type": "Trigger", "text": "After blocking, Headbutt gains +4 power next turn."}, {"name": "Fortified Charge", "type": "Signature", "text": "Defensive Ram also grants +5 DEF next turn."}]}, {"name": "Eotriceratops", "atk": 27, "def": 28, "spd": 4, "trait": "Horned Tank", "attacks": [{"n": "Horn Charge", "power": 15, "acc": -3, "kind": "horn", "effect": "eotri_charge"}, {"n": "Gore", "power": 11, "acc": 0, "kind": "horn", "effect": "none"}, {"n": "Shield Bash", "power": 7, "acc": 1, "kind": "defensive", "effect": "guard4"}], "abilities": [{"name": "Frill Guard", "type": "Passive", "text": "Bite attacks suffer -2 ATK."}, {"name": "Horn Breaker", "type": "Trigger", "text": "Horn Charge on a natural 6 deals +5 damage."}, {"name": "Stand Ground", "type": "Signature", "text": "Below 40 HP, gain +2 DEF."}]}, {"name": "Ceratosaurus male", "atk": 27, "def": 18, "spd": 7, "trait": "Aggression", "attacks": [{"n": "Bite", "power": 11, "acc": 1, "kind": "bite", "effect": "lowhp4"}, {"n": "Claw Slash", "power": 10, "acc": 1, "kind": "claw", "effect": "none"}, {"n": "Frenzy", "power": 15, "acc": -2, "kind": "bite", "effect": "lowhp5"}], "abilities": [{"name": "Aggression", "type": "Passive", "text": "Below 50 HP, bite attacks gain +4 damage."}, {"name": "Blood Frenzy", "type": "Trigger", "text": "Natural 6 after dropping below 50 HP adds +7 damage."}, {"name": "Territorial", "type": "Signature", "text": "Against another Ceratosaurus, gain +3 ATK."}]}, {"name": "Ceratosaurus female", "atk": 26, "def": 17, "spd": 8, "trait": "Quick Hunter", "attacks": [{"n": "Quick Bite", "power": 9, "acc": 3, "kind": "bite", "effect": "none"}, {"n": "Flank", "power": 12, "acc": 0, "kind": "speed", "effect": "fastbonus5"}, {"n": "Claw Swipe", "power": 10, "acc": 1, "kind": "claw", "effect": "none"}], "abilities": [{"name": "Quick Hunter", "type": "Passive", "text": "If faster, Flank gains +5 damage."}, {"name": "Evasive Step", "type": "Trigger", "text": "After a defence roll of 6, gain +3 ATK next turn."}, {"name": "Pack Instinct", "type": "Signature", "text": "Against larger predators (ATK 30+), gain +2 DEF."}]}, {"name": "Tyrannotitan", "atk": 32, "def": 22, "spd": 6, "trait": "Bone Crusher", "attacks": [{"n": "Bone Crusher", "power": 16, "acc": -1, "kind": "bite", "effect": "min10"}, {"n": "Slicing Bite", "power": 12, "acc": 1, "kind": "bite", "effect": "none"}, {"n": "Rush Bite", "power": 13, "acc": 0, "kind": "speed", "effect": "fastbonus4"}], "abilities": [{"name": "Bone Crusher", "type": "Passive", "text": "Bone Crusher hits deal at least 10 damage."}, {"name": "Predatory Rush", "type": "Trigger", "text": "Rush Bite on 5–6 gains +5 damage."}, {"name": "Finisher", "type": "Signature", "text": "Against opponents below 30 HP, bites gain +5 damage."}]}, {"name": "Baryonyx", "atk": 25, "def": 17, "spd": 7, "trait": "Claw Rake", "attacks": [{"n": "Bite", "power": 9, "acc": 2, "kind": "bite", "effect": "none"}, {"n": "Claw Rake", "power": 12, "acc": 1, "kind": "claw", "effect": "reroll1"}, {"n": "Hook & Pull", "power": 10, "acc": 1, "kind": "claw", "effect": "defdown2"}], "abilities": [{"name": "Claw Specialist", "type": "Passive", "text": "Claw attacks ignore 2 DEF."}, {"name": "Claw Rake", "type": "Trigger", "text": "Attack roll 1 on Claw Rake rerolls once."}, {"name": "Hook and Pull", "type": "Signature", "text": "A successful Hook & Pull reduces enemy DEF by 2 next turn."}]}, {"name": "Gorgosaurus", "atk": 28, "def": 19, "spd": 8, "trait": "Pursuit Predator", "attacks": [{"n": "Pursuit Bite", "power": 12, "acc": 1, "kind": "bite", "effect": "fastbonus5"}, {"n": "Rush", "power": 11, "acc": 1, "kind": "speed", "effect": "none"}, {"n": "Maul", "power": 15, "acc": -2, "kind": "bite", "effect": "heavy"}], "abilities": [{"name": "Pursuit Predator", "type": "Passive", "text": "Against slower opponents, bite attacks gain +5 damage."}, {"name": "Chase Down", "type": "Trigger", "text": "Rush on 5–6 gains +4 damage."}, {"name": "Finishing Instinct", "type": "Signature", "text": "Opponent below 35 HP: gain +3 ATK."}]}, {"name": "Quetzalcoatlus", "atk": 21, "def": 10, "spd": 9, "trait": "Aerial Strike", "attacks": [{"n": "Aerial Strike", "power": 13, "acc": 1, "kind": "aerial", "effect": "vs_tank5"}, {"n": "Beak Spear", "power": 11, "acc": 2, "kind": "bite", "effect": "pierce2"}, {"n": "Wing Slam", "power": 8, "acc": 1, "kind": "control", "effect": "slow2"}], "abilities": [{"name": "Aerial Reach", "type": "Passive", "text": "Against DEF 28+, Aerial Strike gains +5 damage."}, {"name": "Spear Dive", "type": "Trigger", "text": "Beak Spear on 5–6 ignores another 3 DEF."}, {"name": "Take Flight", "type": "Signature", "text": "After taking 15+ damage, gain +4 DEF next turn."}]}, {"name": "Allosaurus", "atk": 29, "def": 19, "spd": 7, "trait": "Serrated Bite", "attacks": [{"n": "Serrated Bite", "power": 13, "acc": 1, "kind": "bite", "effect": "crit10"}, {"n": "Claw Rake", "power": 11, "acc": 1, "kind": "claw", "effect": "none"}, {"n": "Ambush Lunge", "power": 12, "acc": 0, "kind": "speed", "effect": "fastbonus4"}], "abilities": [{"name": "Serrated Teeth", "type": "Passive", "text": "Successful bites deal +2 damage."}, {"name": "Deep Cut", "type": "Trigger", "text": "Natural 6 Serrated Bite adds +10 damage."}, {"name": "Ambush Hunter", "type": "Signature", "text": "If faster than opponent, Ambush Lunge gains +4 damage."}]}],matchups={"T. rex|Spinosaurus \u2013 Tail Strike": {"title": "Ancient Rivalry", "bonus": 4, "text": "Successful hits deal +4 damage."}, "T. rex|Spinosaurus \u2013 Extreme Damage": {"title": "Ancient Rivalry", "bonus": 4, "text": "Successful hits deal +4 damage."}, "Giganotosaurus|T. rex": {"title": "Apex Showdown", "firstHit": 6, "text": "The first successful hit of the fight gains +6 damage."}, "Indominus Rex|T. rex": {"title": "Rex vs Hybrid", "trexAtk": 3, "indoDef": 3, "text": "T. rex gains +3 ATK; Indominus gains +3 DEF."}, "Indominus Rex|Scorpios Rex": {"title": "Hybrid Conflict", "crit": 5, "text": "Critical hits deal +5 extra damage."}, "Distortus Rex|Indominus Rex": {"title": "Hybrid Supremacy", "atkBoth": 3, "text": "Both fighters gain +3 ATK."}, "Stegosaurus|T. rex": {"title": "Armour vs Bite", "stegoDefVsBite": 4, "text": "Stegosaurus gains +4 DEF against bite attacks."}, "Therizinosaurus|T. rex": {"title": "Claws vs Jaws", "claw": 4, "bite": 3, "text": "Therizinosaurus claws +4 damage; T. rex bites +3 damage."}};const $=s=>document.querySelector(s);let S=null;
-const d6=()=>Math.floor(Math.random()*6)+1;
 function classifyFighter(d){
-  if(d.def>=28 && d.atk>=27)return "Tank";
+  if(d.def>=28&&d.atk>=27)return "Tank";
   if(d.atk>=33)return "Apex";
   if(d.spd>=8)return "Fast";
   if(d.atk>=29)return "Power";
   return "Balanced";
 }
-function renderPreview(selectEl, previewEl){
-  const idx=+selectEl.value;
-  const d=dinos[idx];
-  if(!d){previewEl.className="fighterPreview empty";previewEl.textContent="Select fighter";return}
-  previewEl.className="fighterPreview";
+function renderPreview(sel,el){
+  if(!sel||!el)return;
+  const d=dinos[Number(sel.value)];
+  if(!d){el.className="fighterPreview empty";el.textContent="Select fighter";return;}
+  el.className="fighterPreview";
   const special=(d.abilities&&d.abilities[0])?d.abilities[0].name:d.trait;
-  previewEl.innerHTML=`
-    <div class="previewTop">
-      <div>
-        <div class="previewName">${d.name}</div>
-        <div class="previewTrait">${d.trait}</div>
-      </div>
-      <div class="previewBadge">${classifyFighter(d)}</div>
-    </div>
-    <div class="previewStats">
-      <div class="previewStat" style="--stat:${Math.min(100,(d.atk/36)*100)}%"><span>ATK</span><b>${d.atk}</b></div>
-      <div class="previewStat" style="--stat:${Math.min(100,(d.def/32)*100)}%"><span>DEF</span><b>${d.def}</b></div>
-      <div class="previewStat" style="--stat:${Math.min(100,(d.spd/10)*100)}%"><span>SPD</span><b>${d.spd}</b></div>
-    </div>
-    <div class="previewSpecial">${special}</div>`;
+  el.innerHTML=`<div class="previewArtwork"><img src="${dinoImage(d.name)}" alt="${d.name}" loading="eager"></div><div class="previewTop"><div><div class="previewName">${d.name}</div><div class="previewTrait">${d.trait}</div></div><div class="previewBadge">${classifyFighter(d)}</div></div>
+  <div class="previewStats">
+    <div class="previewStat" style="--stat:${Math.min(100,d.atk/36*100)}%"><span>ATK</span><b>${d.atk}</b></div>
+    <div class="previewStat" style="--stat:${Math.min(100,d.def/32*100)}%"><span>DEF</span><b>${d.def}</b></div>
+    <div class="previewStat" style="--stat:${Math.min(100,d.spd/10*100)}%"><span>SPD</span><b>${d.spd}</b></div>
+  </div><div class="previewSpecial">${special}</div>`;
 }
-function refreshSelectionPreviews(){
+function refresh(){
   renderPreview($("#p1"),$("#preview1"));
   renderPreview($("#p2"),$("#preview2"));
 }
-
-
-
 function installFxBorders(){
-  document.querySelectorAll(".selectionGrid,.card,.result").forEach(el=>{
+  document.querySelectorAll(".selectionGrid").forEach(el=>{
     if(!el.querySelector(":scope > .fxBorder")){
-      const b=document.createElement("div");
-      b.className="fxBorder";
-      el.appendChild(b);
+      const b=document.createElement("div");b.className="fxBorder";el.appendChild(b);
     }
   });
 }
-function flashScreen(type){
-  const el=$("#screenFlash");
-  if(!el)return;
-  el.className="";
-  void el.offsetWidth;
-  el.className=type;
+function getHistory(){try{return JSON.parse(localStorage.getItem(HIST_KEY)||"[]")}catch(e){return []}}
+function renderHistory(){
+  const el=$("#historyList"); if(!el)return;
+  const list=getHistory();
+  if(!list.length){el.innerHTML='<div class="emptyHistory">No battles recorded yet.</div>';return;}
+  el.innerHTML=list.map(x=>`<div class="historyCard"><div class="winnerName">🏆 ${x.winner}</div><div>${x.winner} defeated ${x.loser}</div><div class="historyStats"><div class="historyStat">HP LEFT<b>${x.winnerHp}</b></div><div class="historyStat">ROUNDS<b>${x.rounds}</b></div><div class="historyStat">BIGGEST HIT<b>${x.biggestHit}</b></div></div><div class="historyMeta">${x.date}</div></div>`).join("");
 }
-function combatOverlay(text,type="hit"){
-  const el=$("#combatFx"),t=el?el.querySelector(".fxText"):null;
-  if(!el||!t)return;
-  el.className="";
-  t.textContent=text;
-  void el.offsetWidth;
-  el.className="show "+type;
-  setTimeout(()=>{el.className=""},850);
-}
-
-function fxOnce(el,cls,ms=450){
-  if(!el)return;
-  el.classList.remove(cls);
-  void el.offsetWidth;
-  el.classList.add(cls);
-  setTimeout(()=>el.classList.remove(cls),ms);
-}
-function fxDice(){
-  fxOnce($("#ad"),"rolling",1500);
-  fxOnce($("#dd"),"rolling",1500);
-}
-function fxResult(){
-  fxOnce($("#result"),"fx-update",360);
-}
-function updateLowHpFx(){
-  if(!S)return;
-  S.f.forEach((f,i)=>{
-    const c=$("#c"+(i+1));
-    if(c)c.classList.toggle("lowHp",f.hp>0&&f.hp<=25);
-  });
-}
-
-function showScreen(id){
-  const cleanId=String(id).replace(/^#/,"");
-  if(cleanId==="selectionScreen"){location.href="index.html";return;}
+function show(id){
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  const target=document.getElementById(cleanId);
-  if(target)target.classList.add("active");
+  const el=document.getElementById(id); if(el)el.classList.add("active");
   window.scrollTo(0,0);
 }
-
-let soundOn = localStorage.getItem("jurassicSound") !== "off";
-let audioCtx=null;
-function ensureAudio(){
-  if(!soundOn)return null;
-  if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-  if(audioCtx.state==="suspended")audioCtx.resume();
-  return audioCtx;
-}
-function tone(freq=440,dur=.1,type="sine",gain=.08,delay=0){
-  let c=ensureAudio(); if(!c)return;
-  let o=c.createOscillator(),g=c.createGain();
-  o.type=type;o.frequency.setValueAtTime(freq,c.currentTime+delay);
-  g.gain.setValueAtTime(0.0001,c.currentTime+delay);
-  g.gain.exponentialRampToValueAtTime(gain,c.currentTime+delay+.01);
-  g.gain.exponentialRampToValueAtTime(0.0001,c.currentTime+delay+dur);
-  o.connect(g);g.connect(c.destination);o.start(c.currentTime+delay);o.stop(c.currentTime+delay+dur+.02);
-}
-
-function playRealSfx(id, volume=0.9){
-  if(!soundOn)return;
-  const el=document.getElementById(id);
-  if(!el)return;
-  try{
-    el.pause();
-    el.currentTime=0;
-    el.volume=volume;
-    const p=el.play();
-    if(p && p.catch)p.catch(()=>{});
-  }catch(e){}
-}
-function sfx(name){
-  if(!soundOn)return;
-  if(name==="roll"){tone(180,.06,"square",.04,0);tone(230,.06,"square",.04,.07);tone(290,.07,"square",.04,.14)}
-  if(name==="hit"){tone(95,.12,"sawtooth",.09,0);tone(65,.15,"square",.05,.04)}
-  if(name==="heavy"){tone(70,.18,"sawtooth",.12,0);tone(45,.22,"square",.08,.06)}
-  if(name==="crit"){tone(520,.09,"square",.07,0);tone(680,.1,"square",.08,.1);tone(880,.14,"square",.09,.2)}
-  if(name==="block"){tone(240,.08,"triangle",.06,0);tone(180,.12,"triangle",.05,.07)}
-  if(name==="event"){tone(330,.08,"sine",.06,0);tone(440,.08,"sine",.06,.09);tone(660,.12,"sine",.07,.18)}
-  if(name==="win"){tone(392,.12,"square",.06,0);tone(523,.12,"square",.06,.13);tone(659,.14,"square",.07,.26);tone(784,.24,"square",.08,.4)}
-}
-function updateSoundButtons(){
-  const label=soundOn?"🔊 Sound On":"🔇 Sound Off";
-  const a=$("#soundToggleSelect"),b=$("#soundToggleBattle");
-  if(a)a.textContent=label;if(b)b.textContent=soundOn?"🔊":"🔇";
-}
-function toggleSound(){
-  soundOn=!soundOn;localStorage.setItem("jurassicSound",soundOn?"on":"off");
-  if(soundOn){ensureAudio();tone(520,.08,"sine",.05)}
-  updateSoundButtons();
-}
-
-const HIST_KEY="jurassicBattleHistoryV1";
-function getBattleHistory(){try{return JSON.parse(localStorage.getItem(HIST_KEY)||"[]")}catch(e){return []}}
-function saveBattleRecord(winnerF, loserF){
-  let list=getBattleHistory();
-  list.unshift({
-    winner:winnerF.name,loser:loserF.name,
-    winnerHp:winnerF.hp,loserHp:loserF.hp,
-    rounds:S?S.round:0,biggestHit:S?S.biggestHit||0:0,
-    date:new Date().toLocaleString()
-  });
-  localStorage.setItem(HIST_KEY,JSON.stringify(list.slice(0,100)));
-}
-function renderBattleHistory(){
-  let list=getBattleHistory(),el=$("#historyList");
-  if(!list.length){el.innerHTML='<div class="emptyHistory">No battles recorded yet.</div>';return}
-  el.innerHTML=list.map(x=>`<div class="historyCard">
-    <div class="winnerName">🏆 ${x.winner}</div>
-    <div>${x.winner} defeated ${x.loser}</div>
-    <div class="historyStats">
-      <div class="historyStat">HP LEFT<b>${x.winnerHp}</b></div>
-      <div class="historyStat">ROUNDS<b>${x.rounds}</b></div>
-      <div class="historyStat">BIGGEST HIT<b>${x.biggestHit}</b></div>
-    </div>
-    <div class="historyMeta">${x.date}</div>
-  </div>`).join("");
-}
-function openHistory(from){
-  window.historyReturnScreen=from;
-  renderBattleHistory();showScreen("#historyScreen");
-}
-const key=(a,b)=>[a,b].sort().join("|");
-function F(d){return {...d,hp:100,maxHp:100,selected:0,poison:0,defMod:0,spdMod:0,guard:0,nextAtk:0,nextDmg:0,damageShield:0,lastDamageTaken:0}}
-
-/* ===== V17 combat decision layer ===== */
-const D=(name,note,base,mods={},reduce=0,gate=0,counter=null,speed=false)=>({name,note,base,mods,reduce,gate,counter,speed});
-const C=(name,power,tags,minMargin=8)=>({name,power,tags,minMargin});
-
-const defenceProfiles={
-"Scorpios Rex":[
- D("Feral Twist","Excellent against committed attacks; fast attacks can track it.",1,{committed:5,fast:-4},0,1,null,true),
- D("Quill Guard","Strong against bites and claws; weak against ranged pressure.",2,{bite:3,claw:3,ranged:-3},1),
- D("Crouched Guard","Reliable protection; heavy and piercing attacks can break it.",4,{committed:-2,piercing:-2},2)
-],
-"Indominus Rex":[
- D("Camouflage Fade","Strong against heavy commitment; fast attacks are harder to lose.",1,{committed:5,fast:-3},0,1,null,true),
- D("Armoured Turn","Strong general defence; piercing attacks exploit gaps.",4,{piercing:-3},2),
- D("Predatory Read","Strong against close bites and claws; weak against ranged/control.",2,{bite:4,claw:3,ranged:-3,control:-2},1)
-],
-"Pteranodon":[
- D("Break Away","Exceptional against slow heavy attacks; fast attacks can catch it.",2,{committed:6,fast:-5},0,1,null,true),
- D("Wing Screen","Strong against ranged/control attacks; poor against heavy impact.",2,{ranged:4,control:3,committed:-3},1),
- D("Hard Flare","Reliable emergency defence but limited by low body mass.",3,{committed:-2},1)
-],
-"Brachiosaurus":[
- D("Plant Feet","Huge protection against body/charge impact; piercing attacks find openings.",5,{body:2,charge:2,piercing:-4},3),
- D("Body Turn","Protects against bites and claws; less useful against control attacks.",3,{bite:3,claw:3,control:-2},2),
- D("Tail Zone","Controls fast approaches and charges; a perfect read can unlock a Tail Counter.",2,{fast:4,charge:4,committed:2},1,0,C("TAIL COUNTER",7,["fast","charge","committed"],8))
-],
-"Suchomimus":[
- D("River Sidestep","Strong against committed attacks; fast attacks can follow.",1,{committed:5,fast:-3},0,1,null,true),
- D("Low Brace","Reliable general defence; heavy attacks remain dangerous.",4,{committed:-2},2),
- D("Hook Guard","Very strong against bites/claws; weak against tail or ranged attacks.",2,{bite:4,claw:4,tail:-2,ranged:-2},1)
-],
-"T. rex":[
- D("Plant & Endure","Strong general protection; committed/piercing attacks can punch through.",5,{committed:-2,piercing:-2},3),
- D("Shoulder Step","Good against charges and heavy attacks; fast attacks punish it.",0,{committed:5,charge:2,fast:-4},0,1,null,true),
- D("Jaw Read","Excellent against close bite/claw pressure; can rarely unlock Jaw Snap.",1,{bite:4,claw:4,ranged:-3},0,0,C("JAW SNAP",8,["bite","claw"],8))
-],
-"Kentrosaurus":[
- D("Spine Wall","Strong against close attacks; heavy force can overwhelm it.",5,{bite:2,claw:2,committed:-2},3),
- D("Pivot Away","Useful against committed attacks; fast pursuit beats it.",0,{committed:5,fast:-4},0,1,null,true),
- D("Spike Trap","Designed to punish rushes/body attacks; a perfect read can counter.",2,{charge:4,body:4,fast:3,ranged:-3},0,0,C("SPIKE COUNTER",7,["charge","body","fast"],7))
-],
-"Giganotosaurus":[
- D("Heavy Brace","Reliable body defence; piercing attacks are the answer.",4,{piercing:-3,committed:-2},3),
- D("Lateral Step","Strong against committed attacks; fast attacks track it.",0,{committed:5,fast:-4},0,1,null,true),
- D("Predator Read","Good against bites/body attacks; poor against ranged/control.",2,{bite:3,body:3,ranged:-2,control:-2},1)
-],
-"Spinosaurus – Tail Strike":[
- D("Sail Turn","Strong against body and charge attacks; piercing claws still threaten.",4,{body:2,charge:2,piercing:-2},2),
- D("Step Back","Strong against committed attacks; fast attacks close the gap.",0,{committed:5,fast:-4},0,1,null,true),
- D("Tail Guard","Controls rushes and charges; may unlock a rare Tail Counter.",2,{fast:4,charge:4},1,0,C("TAIL COUNTER",7,["fast","charge"],8))
-],
-"Spinosaurus – Extreme Damage":[
- D("Heavy Frame","Strong general defence; piercing attacks bypass the mass.",5,{piercing:-3,committed:-1},3),
- D("Backstep","Useful against heavy attacks; vulnerable to fast/accurate attacks.",0,{committed:4,fast:-4,accurate:-2},0,1,null,true),
- D("Claw Parry","Strong against bites and claws; poor against ranged/control.",2,{bite:3,claw:3,ranged:-2,control:-2},1)
-],
-"Becklespinax":[
- D("Rush Step","Good against committed attacks; fast attacks can match the movement.",1,{committed:5,fast:-3},0,1,null,true),
- D("Shoulder Guard","Reliable defence; piercing attacks find gaps.",4,{piercing:-2},2),
- D("Spine Read","Best against body/charge attacks; control attacks bypass it.",2,{charge:3,body:3,control:-3},1)
-],
-"Carnotaurus":[
- D("Sprint Aside","Excellent against stomp/charge/heavy attacks; fast attacks can catch it.",1,{committed:6,stomp:2,fast:-5},0,1,null,true),
- D("Horn Guard","Reliable but limited protection; committed attacks still hurt.",3,{committed:-2},2),
- D("Duck & Rush","Strong against body/tail commitment; may unlock Horn Counter.",1,{body:4,tail:4,committed:2},0,0,C("HORN COUNTER",7,["stomp","tail","body","committed"],8))
-],
-"Distortus Rex":[
- D("Mutant Guard","Strong general defence; piercing attacks exploit openings.",4,{piercing:-2},2),
- D("Twisted Evade","Unpredictable against heavy attacks; poor against fast attacks.",1,{committed:4,fast:-4},0,1,null,true),
- D("Adaptive Shell","Excellent against status/piercing moves; weak against raw heavy force.",2,{status:4,piercing:3,committed:-3},2)
-],
-"Stegosaurus":[
- D("Armoured Turn","Excellent against bites/claws; piercing/control attacks bypass plates.",3,{bite:5,claw:3,piercing:-3,control:-2},3),
- D("Sidestep & Swing","Best against charge/heavy commitment; a perfect read can unlock THAGOMIZER.",0,{committed:7,charge:2,fast:-5},0,1,C("THAGOMIZER COUNTER",10,["charge","stomp","committed"],6),true),
- D("Plant & Brace","Safest general defence; heavy/piercing attacks exploit it.",5,{committed:-3,piercing:-2},4)
-],
-"Therizinosaurus":[
- D("Claw Screen","Excellent against close bites/claws; may unlock Claw Riposte.",2,{bite:4,claw:4,body:2,ranged:-3},1,0,C("CLAW RIPOSTE",9,["bite","claw","body"],8)),
- D("Long Step","Strong against heavy commitment; fast attacks close the gap.",0,{committed:5,fast:-4},0,1,null,true),
- D("Guarded Stance","Reliable protection; heavy attacks can overpower it.",3,{committed:-2},2)
-],
-"Minotaurus":[
- D("Armoured Skull","Excellent against body/charge attacks; piercing attacks find gaps.",5,{charge:2,body:2,piercing:-3},3),
- D("Sidestep","Strong against heavy commitment; vulnerable to fast attacks.",0,{committed:5,fast:-4},0,1,null,true),
- D("Rebound Guard","Designed for charges/body attacks; may unlock Rebound Ram.",2,{charge:4,body:4},1,0,C("REBOUND RAM",7,["charge","body"],8))
-],
-"Eotriceratops":[
- D("Frill Guard","Excellent against bites/claws; piercing attacks get around the frill.",4,{bite:4,claw:2,piercing:-3},2),
- D("Stand Ground","Very reliable against body/charge pressure; heavy/piercing remain dangerous.",5,{charge:2,body:2,committed:-2,piercing:-2},3),
- D("Horn Turn","Reads charge/body attacks and can rarely unlock Horn Counter.",1,{charge:4,body:4,ranged:-3},0,0,C("HORN COUNTER",8,["charge","body"],8))
-],
-"Ceratosaurus male":[
- D("Shoulder Guard","Reliable protection; committed attacks still hit hard.",3,{committed:-2},2),
- D("Quick Step","Strong against heavy attacks; weaker against fast pursuit.",1,{committed:5,fast:-3},0,1,null,true),
- D("Aggressive Read","Strong against bites/claws; may unlock Reactive Bite.",1,{bite:4,claw:4,ranged:-3},0,0,C("REACTIVE BITE",7,["bite","claw"],8))
-],
-"Ceratosaurus female":[
- D("Evasive Step","Excellent against commitment; vulnerable to fast/accurate attacks.",2,{committed:5,fast:-4,accurate:-2},0,1,null,true),
- D("Low Guard","Reliable but modest protection.",3,{committed:-2},2),
- D("Flank Read","Good against fast/body attacks; weak against heavy force.",2,{fast:3,body:3,committed:-2},1)
-],
-"Tyrannotitan":[
- D("Heavy Brace","Reliable protection; piercing attacks exploit it.",4,{piercing:-3,committed:-2},3),
- D("Step Off","Strong against committed attacks; weak against fast attacks.",0,{committed:5,fast:-4},0,1,null,true),
- D("Jaw Guard","Strong against bites/claws; poor against ranged/control.",2,{bite:3,claw:3,ranged:-2,control:-2},1)
-],
-"Baryonyx":[
- D("Hook Guard","Excellent against bite/claw exchanges; vulnerable to tail/ranged attacks.",2,{bite:4,claw:4,tail:-2,ranged:-2},1),
- D("Side Step","Strong against committed attacks; fast attacks can follow.",1,{committed:5,fast:-3},0,1,null,true),
- D("Low Brace","Reliable protection; heavy attacks remain dangerous.",3,{committed:-2},2)
-],
-"Gorgosaurus":[
- D("Pursuit Step","Good against committed attacks; very fast attacks can track it.",1,{committed:5,fast:-3},0,1,null,true),
- D("Brace","Reliable protection; piercing/heavy attacks beat it.",3,{committed:-2,piercing:-2},2),
- D("Rush Read","Strong against fast/body attacks; weak against ranged attacks.",2,{fast:3,body:3,ranged:-3},1)
-],
-"Quetzalcoatlus":[
- D("Take Flight","Exceptional against ground heavy attacks; fast/aerial attacks can follow.",2,{committed:6,body:3,tail:3,fast:-5,aerial:-3},0,1,null,true),
- D("Wing Guard","Strong against ranged/control attacks; poor against heavy impact.",2,{ranged:4,control:3,committed:-3},1),
- D("Aerial Reversal","Reads charge/stomp attacks and may unlock Dive Counter.",1,{charge:4,stomp:4,committed:2},0,0,C("DIVE COUNTER",6,["charge","stomp","committed"],8))
-],
-"Allosaurus":[
- D("Side Step","Strong against committed attacks; fast attacks can catch it.",1,{committed:5,fast:-3},0,1,null,true),
- D("Shoulder Guard","Reliable defence; heavy/piercing attacks remain dangerous.",3,{committed:-2,piercing:-2},2),
- D("Claw Parry","Excellent against bites/claws; may unlock Claw Riposte.",2,{bite:4,claw:4,ranged:-3},0,0,C("CLAW RIPOSTE",7,["bite","claw"],8))
-]
-};
-
-function getDefences(name){
-  return defenceProfiles[name]||[
-    D("Brace","Reliable defence; committed attacks can break it.",4,{committed:-2},2),
-    D("Evade","Strong against committed attacks; weak against fast attacks.",0,{committed:5,fast:-4},0,1,null,true),
-    D("Read","Strong against close attacks; weak against ranged attacks.",2,{close:3,ranged:-3},1)
-  ];
-}
-function attackTags(move){
-  const tags=new Set([move.kind]);
-  if(["bite","claw","body","horn","tail","charge","stomp","heavy"].includes(move.kind))tags.add("close");
-  if(move.effect==="heavy"||["charge","stomp","heavy"].includes(move.kind)||(move.power>=15&&move.acc<=0))tags.add("committed");
-  if(["speed","aerial"].includes(move.kind)||move.acc>=2)tags.add("fast");
-  if(move.acc>=2)tags.add("accurate");
-  if(move.kind==="ranged")tags.add("ranged");
-  if(["pierce2","pierce3","pierce4","defdown2","defdown3"].includes(move.effect))tags.add("piercing");
-  if(["poison","slow2","defdown2","defdown3","mutation","stun_chance"].includes(move.effect))tags.add("status");
-  if(["slow2","defdown2","defdown3"].includes(move.effect))tags.add("control");
-  return tags;
-}
-function attackType(move){
-  const t=attackTags(move);
-  if(t.has("committed"))return "HEAVY";
-  if(t.has("fast"))return "FAST";
-  if(t.has("piercing")||t.has("status"))return "TACTICAL";
-  return "BALANCED";
-}
-function attackHint(move){
-  const t=attackTags(move);
-  if(t.has("committed"))return "High impact • vulnerable to the right evade";
-  if(t.has("fast"))return "Fast/accurate • hunts evasive defence";
-  if(t.has("piercing"))return "Technical • pressures armour and guard";
-  if(t.has("status"))return "Tactical • trades raw power for an effect";
-  return "Reliable middle option";
-}
-function defenceOutcome(defender,attacker,defence,move){
-  const tags=attackTags(move);
-  let mod=defence.base||0;
-  for(const [tag,val] of Object.entries(defence.mods||{}))if(tags.has(tag))mod+=val;
-  if(defence.speed){
-    const gap=(defender.spd+(defender.spdMod||0))-(attacker.spd+(attacker.spdMod||0));
-    mod+=Math.max(-2,Math.min(2,gap));
-  }
-  return {mod:Math.max(-4,Math.min(10,mod)),reduce:defence.reduce||0,gate:defence.gate||0};
-}
-function counterEligible(defence,move,ar,dr,atkTotal=null,defTotal=null){
-  const c=defence?.counter;if(!c)return false;
-  const tags=attackTags(move);
-  if(!c.tags.some(t=>tags.has(t)))return false;
-  const margin=(atkTotal!==null&&defTotal!==null)?defTotal-atkTotal:(dr-ar);
-  return ar===1||dr===6||margin>=c.minMargin;
-}
-function offerCounter(a,d,move,defence,ar,dr,atkTotal=null,defTotal=null){
-  if(!counterEligible(defence,move,ar,dr,atkTotal,defTotal))return false;
-  S.phase="counter";
-  S.pendingCounter={owner:1-S.turn,target:S.turn,counter:defence.counter};
-  combatOverlay("COUNTER!","event");
-  $("#result").innerHTML=`<div class="counterPrompt">
-    <strong>⚡ COUNTER OPPORTUNITY</strong>
-    <p><b>${d.name}</b> earned <b>${defence.counter.name}</b>. Rare opening — take it or hold position.</p>
-    <div class="counterActions">
-      <button id="takeCounter" class="counterTake">USE ${defence.counter.name}</button>
-      <button id="skipCounter" class="counterSkip">Decline</button>
-    </div></div>`;
-  render();
-  setTimeout(()=>{
-    $("#takeCounter")?.addEventListener("click",takeCounter);
-    $("#skipCounter")?.addEventListener("click",()=>{S.pendingCounter=null;next();});
-  },0);
-  return true;
-}
-function takeCounter(){
-  if(!S?.pendingCounter)return;
-  const p=S.pendingCounter,owner=S.f[p.owner],target=S.f[p.target];
-  const r=d6(),damage=Math.min(18,p.counter.power+r+Math.floor(owner.atk/14));
-  target.hp=Math.max(0,target.hp-damage);
-  S.biggestHit=Math.max(S.biggestHit||0,damage);
-  flashScreen("crit");combatOverlay(p.counter.name,"crit");
-  log(`${owner.name} used <b>${p.counter.name}</b> → ${damage} counter damage. ${target.name}: ${target.hp} HP.`);
-  $("#result").innerHTML=`<h3>${p.counter.name}</h3><span class="big">${damage} COUNTER DAMAGE</span><br>Counter roll: <b>${r}</b><br><span class="remain">${target.name}: ${target.hp} HP LEFT</span>`;
-  S.pendingCounter=null;
-  if(target.hp<=0){
-    S.over=true;sfx("win");saveBattleRecord(owner,target);
-    $("#result").innerHTML+=`<br><br><span class="big">🏆 ${owner.name} WINS!</span>`;
-    render();return;
-  }
-  next();
-}
-
-
-function chooserIndex(){
-  if(!S||S.over)return -1;
-  if(S.phase==="attack")return S.turn;
-  if(S.phase==="defence")return 1-S.turn;
-  return -1;
-}
-function card(el,f,i){
-  const chooser=chooserIndex(),active=chooser===i;
-  el.className="card"+(active?" active":"");
-  if(!f){el.innerHTML="No fighter";return}
-
-  let controls="";
-  if(!S.over){
-    if(S.phase==="attack"&&i===S.turn){
-      controls=`<div class="choiceTitle attack">CHOOSE ATTACK</div>
-      <div class="attacks">${f.attacks.map((a,j)=>`<button class="atkBtn ${S.attackChoice===j?"selected":""}" data-j="${j}">
-        <b>${a.n}</b><span class="typeBadge">${attackType(a)}</span> · Power ${a.power} · Accuracy ${a.acc>=0?"+":""}${a.acc}
-        <span class="attackHint">${attackHint(a)}</span></button>`).join("")}</div>`;
-    }else if(S.phase==="defence"&&i===1-S.turn){
-      const defs=getDefences(f.name);
-      controls=`<div class="choiceTitle defence">CHOOSE DEFENCE</div>
-      <div class="defences">${defs.map((d,j)=>`<button class="defBtn ${S.defenceChoice===j?"selected":""}" data-def="${j}">
-        <b>${d.name}</b><small>${d.note}</small></button>`).join("")}</div>`;
-    }else if(S.phase==="defence"&&i===S.turn){
-      controls=`<div class="lockedChoice">🔒 ATTACK LOCKED<br><span class="muted">The move is hidden from the defender</span></div>`;
-    }else if(["reveal","rolling"].includes(S.phase)){
-      controls=`<div class="lockedChoice">Choices locked</div>`;
-    }else if(S.phase==="counter"&&i===1-S.turn){
-      controls=`<div class="lockedChoice">⚡ Counter window earned</div>`;
-    }
-  }
-
-  el.innerHTML=`<h2>${f.name}</h2><div class="hpbar"><div class="hpfill" style="width:${Math.max(0,f.hp)}%"></div></div><b>${f.hp}/100 HP</b>
-  <div class="stats"><div class="stat">ATK<b>${f.atk}</b></div><div class="stat">DEF<b>${f.def}</b></div><div class="stat">SPD<b>${f.spd}</b></div></div>
-  <div class="muted">${f.trait}</div>
-  <button class="mobileAbilitiesToggle" data-card="${i}">Abilities ▾</button>
-  <div class="abilityBox">${(f.abilities||[]).map(x=>`<div class="ability"><em>${x.type}</em> <strong>${x.name}</strong><br>${x.text}</div>`).join("")}</div>
-  ${controls}`;
-
-  if(active&&S.phase==="attack"){
-    el.querySelectorAll(".atkBtn").forEach(b=>b.addEventListener("click",()=>{S.attackChoice=+b.dataset.j;f.selected=S.attackChoice;render()}));
-  }
-  if(active&&S.phase==="defence"){
-    el.querySelectorAll(".defBtn").forEach(b=>b.addEventListener("click",()=>{S.defenceChoice=+b.dataset.def;render()}));
-  }
-}
-function attachMobileAbilityButtons(){
-  document.querySelectorAll(".mobileAbilitiesToggle").forEach(btn=>{
-    btn.onclick=()=>{
-      const c=btn.closest(".card");if(!c)return;
-      c.classList.toggle("showAbilities");
-      btn.textContent=c.classList.contains("showAbilities")?"Hide Abilities ▴":"Abilities ▾";
-    };
-  });
-}
-function renderMobileStrip(){
-  if(!S)return;
-  const chooser=chooserIndex();
-  [0,1].forEach(i=>{
-    const f=S.f[i],el=$("#mobileF"+(i+1));if(!el)return;
-    el.className="mobileFighter"+(chooser===i?" active":"");
-    el.innerHTML=`<div class="mobileName">${f.name}</div><div class="mobileHpRow"><div class="mobileHpMini"><div style="width:${Math.max(0,f.hp)}%"></div></div><div class="mobileHpText">${f.hp} HP</div></div>`;
-  });
-}
-function phaseText(){
-  if(S.over)return `<span class="phaseChip counter">BATTLE OVER</span>`;
-  if(S.phase==="attack")return `<span class="phaseChip attack">ATTACK PHASE</span><div class="phaseMessage">${S.f[S.turn].name}: choose an attack, then lock it.</div>`;
-  if(S.phase==="defence")return `<span class="phaseChip defence">DEFENCE PHASE</span><div class="phaseMessage">${S.f[1-S.turn].name}: attack hidden. Choose the defence you think fits.</div>`;
-  if(S.phase==="reveal"){
-    const a=S.f[S.turn],d=S.f[1-S.turn],mv=a.attacks[a.selected],df=getDefences(d.name)[S.defenceChoice];
-    return `<span class="phaseChip reveal">REVEAL</span><div class="revealPanel"><div class="revealItem"><span>ATTACK</span><b>${mv.n}</b></div><div class="revealItem"><span>DEFENCE</span><b>${df.name}</b></div></div>`;
-  }
-  if(S.phase==="rolling")return `<span class="phaseChip reveal">RESOLVING</span><div class="phaseMessage">Choices revealed — dice rolling.</div>`;
-  if(S.phase==="counter")return `<span class="phaseChip counter">COUNTER WINDOW</span><div class="phaseMessage">A rare counter opportunity has been earned.</div>`;
-  return "";
-}
-function render(){
-  if(!S||!$("#c1")||!$("#c2")||!$("#roll"))return;
-  card($("#c1"),S.f[0],0);card($("#c2"),S.f[1],1);
-  $("#turn").innerHTML=phaseText();
-  renderMobileStrip();attachMobileAbilityButtons();updateLowHpFx();installFxBorders();
-  const roll=$("#roll");
-  if(S.over){roll.disabled=true;roll.textContent="BATTLE OVER";$("#rematch").style.display="";return}
-  $("#rematch").style.display="none";
-  if(S.phase==="attack"){roll.textContent="LOCK ATTACK";roll.disabled=S.attackChoice===null}
-  else if(S.phase==="defence"){roll.textContent="LOCK DEFENCE";roll.disabled=S.defenceChoice===null}
-  else if(S.phase==="reveal"){roll.textContent="REVEALING…";roll.disabled=true}
-  else if(S.phase==="counter"){roll.textContent="COUNTER DECISION";roll.disabled=true}
-  else{roll.textContent="ROLLING…";roll.disabled=true}
-}
-function log(x){let e=document.createElement("div");e.className="logentry";e.innerHTML=x;$("#history").prepend(e)}
-function start(){
-  if($("#p1").value===$("#p2").value)return alert("Choose different dinosaurs.");
-  const a=F(dinos[$("#p1").value]),b=F(dinos[$("#p2").value]);
-  const first=(a.spd===b.spd?d6()>=4:a.spd>b.spd)?0:1;
-  S={f:[a,b],turn:first,over:false,round:1,firstHit:true,biggestHit:0,phase:"attack",attackChoice:null,defenceChoice:null,pendingCounter:null};
-  $("#history").innerHTML="";showScreen("#battleScreen");
-  const m=matchups[key(a.name,b.name)];
-  $("#matchEvent").innerHTML=m?`<div class="event"><b>${m.title}</b> — ${m.text}</div>`:"";
-  $("#result").innerHTML=`<h3>Battle begins</h3>${S.f[first].name} attacks first. Choose an attack and lock it.`;
-  $("#ad").textContent="?";$("#dd").textContent="?";
-  render();
-}
-
-function doublesEvent(ar,dr,a,d){
- if(ar!==dr)return {extra:0,atk:0,def:0,skip:false,text:""};
- let ev={extra:0,atk:0,def:0,skip:false,text:""};
- if(ar===1){ev.skip=true;ev.text="DOUBLE 1 — CHAOTIC COLLISION! The attack fails and both dinosaurs take 4 damage.";a.hp=Math.max(0,a.hp-4);d.hp=Math.max(0,d.hp-4)}
- if(ar===2){ev.atk=4;ev.text="DOUBLE 2 — FEINT! The attacker reads the defence and gains +4 ATK."}
- if(ar===3){ev.extra=7;ev.text="DOUBLE 3 — MOMENTUM! A successful strike deals +7 damage."}
- if(ar===4){a.hp=Math.min(100,a.hp+6);ev.text="DOUBLE 4 — ADRENALINE SURGE! The attacker recovers 6 HP."}
- if(ar===5){ev.extra=10;ev.text="DOUBLE 5 — FEROCIOUS COMBO! A successful hit deals +10 damage."}
- if(ar===6){ev.extra=16;ev.atk=3;ev.text="DOUBLE 6 — LEGENDARY CLASH! +3 ATK and +16 damage if the hit lands."}
- $("#matchEvent").innerHTML=`<div class="event doubleEvent"><b>${ev.text}</b></div>`;sfx("event");
- return ev;
-}
-function resolve(ar,dr){let a=S.f[S.turn],d=S.f[1-S.turn],move=a.attacks[a.selected],defence=getDefences(d.name)[S.defenceChoice]||getDefences(d.name)[0],dchoice=defenceOutcome(d,a,defence,move),m=matchups[key(a.name,d.name)],notes=[`${defence.name}: ${dchoice.mod>=0?"+":""}${dchoice.mod} DEF`],bonus=a.nextAtk||0,extra=a.nextDmg||0,pierce=0;
-a.nextAtk=0;a.nextDmg=0;
-let dbl=doublesEvent(ar,dr,a,d);bonus+=dbl.atk;extra+=dbl.extra;if(dbl.text){notes.push(dbl.text);combatOverlay("DOUBLES!","event");}
-if(dbl.skip){$("#result").classList.add("flashCrit");setTimeout(()=>$("#result").classList.remove("flashCrit"),500);$("#result").innerHTML=`<h3>DOUBLE EVENT!</h3><span class="big">${dbl.text}</span><br><span class="remain">${a.name}: ${a.hp} HP • ${d.name}: ${d.hp} HP</span>`;log(dbl.text);if(a.hp<=0||d.hp<=0){S.over=true;
-if(a.hp>0&&d.hp<=0){sfx("win");saveBattleRecord(a,d)}
-else if(d.hp>0&&a.hp<=0){sfx("win");saveBattleRecord(d,a)}
-return render()}return next();}
-if(a.poison){a.hp=Math.max(0,a.hp-a.poison);notes.push(`${a.name} suffers ${a.poison} poison damage`);a.poison=0}
-if(move.effect==="reroll1"&&ar===1){ar=d6();$("#ad").textContent=ar;notes.push("rerolled attack 1")}
-
-
-// Eotriceratops Horn Charge: powerful but committed and easier to evade.
-// SPD 8-10 target: needs 5+, SPD 5-7: needs 4+, SPD 1-4: needs 3+.
-if(a.name==="Eotriceratops" && move.n==="Horn Charge"){
-  let targetSpeed=d.spd+(d.spdMod||0);
-  let needed=targetSpeed>=8?5:(targetSpeed>=5?4:3);if(attackTags(move).has("committed"))needed=Math.min(6,needed+dchoice.gate);
-  if(ar<needed){
-    $("#result").innerHTML=`<h3>CHARGE MISSES!</h3><span class="big">${d.name} evades the horn charge.</span><br>Attack die: <b>${ar}</b> — needed <b>${needed}+</b> against SPD ${targetSpeed}.<br><span class="remain">${d.name}: ${d.hp} HP LEFT</span>`;
-    combatOverlay("MISSED","miss");fxResult();log(`${a.name} used <b>Horn Charge</b> → missed (rolled ${ar}, needed ${needed}+).`);
-    if(offerCounter(a,d,move,defence,ar,dr))return;
-    return next();
-  }
-  if(ar===6){extra+=5;notes.push("Horn Breaker +5 damage");}
-}
-
-// Brachiosaurus Stomp: enormous damage potential, but a huge slow animal cannot land it reliably.
-// Versus SPD 8-10: needs 5 or 6. Versus SPD 5-7: needs 4+. Versus SPD 1-4: needs 3+.
-if(a.name==="Brachiosaurus" && move.n==="Stomp"){
-  let targetSpeed=d.spd+(d.spdMod||0);
-  let needed=targetSpeed>=8?5:(targetSpeed>=5?4:3);if(attackTags(move).has("committed"))needed=Math.min(6,needed+dchoice.gate);
-  if(ar<needed){
-    $("#result").innerHTML=`<h3>STOMP MISSES!</h3><span class="big">${d.name} avoids the massive foot.</span><br>Attack die: <b>${ar}</b> — needed <b>${needed}+</b> against SPD ${targetSpeed}.<br><span class="remain">${d.name}: ${d.hp} HP LEFT</span>`;
-    combatOverlay("MISSED","miss");fxResult();log(`${a.name} used <b>Stomp</b> → missed (rolled ${ar}, needed ${needed}+).`);
-    if(offerCounter(a,d,move,defence,ar,dr))return;
-    return next();
-  }
-  if(ar===6){extra+=10;notes.push("Earthshaker +10 damage");}
-}
-if(ar===1){$("#result").innerHTML=`<h3>MISS</h3><span class="big">${a.name}'s ${move.n} misses.</span><br><span class="remain">${d.name}: ${d.hp} HP left</span>`;combatOverlay("MISS","miss");log(`${a.name}: ${move.n} → MISS`);return next()}
-if(move.effect==="fastbonus"&&(a.spd+a.spdMod)>(d.spd+d.spdMod))extra+=5;
-if(move.effect==="fastbonus4"&&(a.spd+a.spdMod)>(d.spd+d.spdMod))extra+=4;
-if(move.effect==="fastbonus5"&&(a.spd+a.spdMod)>(d.spd+d.spdMod))extra+=5;
-if(move.effect==="fastbonus8"&&(a.spd+a.spdMod)>(d.spd+d.spdMod))extra+=8;
-if(move.effect==="anti_fast"&&(d.spd+d.spdMod)>=8)extra+=6;
-if(move.effect==="vs_tank5"&&d.def>=28)extra+=5;
-if(move.effect==="lowhp4"&&a.hp<50)extra+=4;if(move.effect==="lowhp5"&&a.hp<50)extra+=5;
-if(move.effect==="pierce4")pierce=4;if(move.effect==="pierce3")pierce=3;if(move.effect==="pierce2")pierce=2;
-if(move.effect==="die56bonus"&&ar>=5)extra+=5;if(move.effect==="crit10"&&ar===6)extra+=10;
-
-// Dinosaur-specific ability logic
-if(a.name==="T. rex" && move.kind==="bite") extra+=2;
-if(a.name==="T. rex" && move.n==="Crushing Bite" && ar===6) extra+=10;
-if(a.name==="Scorpios Rex" && a.hp<50 && move.effect==="poison") d.poison=7;
-if(a.name==="Indominus Rex" && move.n==="Ambush" && a.spd>d.spd) extra+=6;
-if(a.name==="Brachiosaurus") d.damageShield=Math.max(d.damageShield||0,0);
-if(a.name==="Suchomimus" && move.kind==="claw") pierce+=2;
-if(a.name==="Kentrosaurus" && d.spd>=8) bonus+=3;
-if(a.name==="Giganotosaurus" && ["T. rex","Indominus Rex"].includes(d.name)) extra+=3;
-if(a.name==="Spinosaurus – Tail Strike" && d.name==="T. rex" && move.kind==="tail") extra+=5;
-if(a.name==="Distortus Rex" && a.hp<40){bonus+=4;a.guard+=2}
-if(a.name==="Stegosaurus" && d.name==="T. rex" && move.kind==="tail") extra+=3;
-if(a.name==="Therizinosaurus" && ["T. rex","Giganotosaurus"].includes(d.name) && move.kind==="claw") extra+=4;
-if(a.name==="Eotriceratops" && a.hp<40)a.guard+=2;
-if(a.name==="Ceratosaurus male" && d.name==="Ceratosaurus female")bonus+=3;
-if(a.name==="Ceratosaurus female" && d.atk>=30)a.guard+=2;
-if(a.name==="Tyrannotitan" && d.hp<30 && move.kind==="bite")extra+=5;
-if(a.name==="Gorgosaurus" && d.hp<35)bonus+=3;
-if(a.name==="Allosaurus" && move.kind==="bite")extra+=2;
-if(move.effect==="mutation"){let r=d6();if(r<=2){a.hp=Math.min(100,a.hp+8);notes.push("Mutation healed 8 HP")}else extra+=8}
-if(m){if(m.bonus)extra+=m.bonus;if(m.crit&&ar===6)extra+=m.crit;if(m.atkBoth)bonus+=m.atkBoth;if(m.trexAtk&&a.name==="T. rex")bonus+=m.trexAtk;if(m.indoDef&&d.name==="Indominus Rex")d.guard+=m.indoDef;if(m.stegoDefVsBite&&d.name==="Stegosaurus"&&move.kind==="bite")d.guard+=m.stegoDefVsBite;if(m.claw&&a.name==="Therizinosaurus"&&move.kind==="claw")extra+=m.claw;if(m.bite&&a.name==="T. rex"&&move.kind==="bite")extra+=m.bite}
-let atkTotal=a.atk+move.power+move.acc+ar+bonus,defTotal=Math.max(0,d.def+d.defMod+d.guard-pierce)+dr+(dr===6?5:0)+dchoice.mod;d.guard=0;
-let margin=atkTotal-defTotal,damage=0,crit=ar===6;
-if(margin>0){damage=Math.max(6,Math.round(margin*1.25)+extra+(crit?8:0));
-if(a.name==="Brachiosaurus" && move.n==="Stomp")damage=Math.max(14,damage);if(move.effect==="min10")damage=Math.max(10,damage);if(m&&m.firstHit&&S.firstHit){damage+=m.firstHit;S.firstHit=false}
-if(d.name==="Brachiosaurus")damage=Math.max(0,damage-4);damage=Math.max(0,damage-dchoice.reduce);
-d.lastDamageTaken=damage;
-S.biggestHit=Math.max(S.biggestHit||0,damage);
-d.hp=Math.max(0,d.hp-damage);
-if(a.name==="Brachiosaurus" && move.n==="Stomp"){
-  playRealSfx("sfxBrachioStomp",1.0);
-}else{
-  playRealSfx("sfxNormalHit", damage>=20 ? 1.0 : 0.82);
-}
-if(d.name==="Pteranodon" && damage>=15)d.guard+=4;
-if(d.name==="Quetzalcoatlus" && damage>=15)d.guard+=4;
-if(d.name==="Scorpios Rex" && damage>=20)d.nextAtk+=5;
-if(d.name==="Giganotosaurus" && damage>=15)d.nextAtk+=3;
-if(move.effect==="poison")d.poison=Math.max(d.poison||0,5);if(move.effect==="slow2")d.spdMod=-2;if(move.effect==="defdown3")d.defMod=-3;if(move.effect==="defdown2")d.defMod=-2;if(move.effect==="guard6")a.guard=6;if(move.effect==="guard8")a.guard=8;if(move.effect==="guard5")a.guard=5;if(move.effect==="guard4")a.guard=4;
-const defCard=$("#c"+(S.turn===0?2:1));
-if(crit){
-  fxOnce(defCard,"fx-crit",620);
-  flashScreen("crit");
-  combatOverlay("CRITICAL!","crit");
-}else{
-  fxOnce(defCard,"fx-hit",480);
-  flashScreen("hit");
-  combatOverlay("-"+damage,"hit");
-}
-fxResult();
-$("#result").innerHTML=`<h3>${crit?"CRITICAL HIT!":"HIT!"}</h3><span class="big">${a.name} used ${move.n}</span><br>Attack ${ar} → <b>${atkTotal}</b> vs ${defence.name} ${dr} → <b>${defTotal}</b><br><span class="damage big">${damage} DAMAGE</span><br><span class="remain big">${d.name}: ${d.hp} HP LEFT</span>${notes.length?`<br><span class="muted">${notes.join(" • ")}</span>`:""}`;
-log(`${a.name} used <b>${move.n}</b> → ${damage} damage. ${d.name}: ${d.hp} HP.`);if(d.hp<=0){S.over=true;sfx("win");saveBattleRecord(a,d);$("#result").innerHTML+=`<br><br><span class="big">🏆 ${a.name} WINS!</span>`;return render()}}
-else{$("#result").innerHTML=`<h3>BLOCKED</h3>${a.name}'s ${move.n} failed.<br>Attack <b>${atkTotal}</b> vs Defence <b>${defTotal}</b><br><span class="remain">${d.name}: ${d.hp} HP LEFT</span>`;sfx("block");fxOnce($("#c"+(S.turn===0?2:1)),"fx-block",480);flashScreen("block");combatOverlay("BLOCKED","block");fxResult();log(`${a.name} used ${move.n} → blocked.`);
-if(d.name==="Indominus Rex")d.nextAtk+=3;
-if(d.name==="Ceratosaurus female" && dr===6)d.nextAtk+=3;
-if(offerCounter(a,d,move,defence,ar,dr,atkTotal,defTotal))return;
-}
-next()}
-function next(){
-  const ma=S?matchups[key(S.f[0].name,S.f[1].name)]:null;
-  $("#matchEvent").innerHTML=ma?`<div class="event"><b>${ma.title}</b> — ${ma.text}</div>`:"";
-  S.turn=1-S.turn;if(S.turn===0)S.round++;
-  S.f.forEach(f=>{if(f.defMod<0)f.defMod=0;if(f.spdMod<0)f.spdMod=0});
-  S.phase="attack";S.attackChoice=null;S.defenceChoice=null;S.pendingCounter=null;
-  $("#ad").textContent="?";$("#dd").textContent="?";
-  render();
+function updateSound(){
+  const b=$("#soundToggleSelect"); if(b)b.textContent=soundOn?"🔊 Sound On":"🔇 Sound Off";
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
   const p1=$("#p1"),p2=$("#p2");
-  const a=sessionStorage.getItem("jt_p1"),b=sessionStorage.getItem("jt_p2");
-  if(a===null||b===null){location.replace("index.html");return}
-
-  dinos.forEach((d,i)=>{if(p1)p1.add(new Option(d.name,String(i)));if(p2)p2.add(new Option(d.name,String(i)))});
-  if(p1)p1.value=a;if(p2)p2.value=b;
-
-  function beginDiceRoll(){
-    if(!S||S.over)return;
-    S.phase="rolling";render();ensureAudio();sfx("roll");fxDice();
-    const timer=setInterval(()=>{if($("#ad"))$("#ad").textContent=d6();if($("#dd"))$("#dd").textContent=d6()},95);
-    setTimeout(()=>{
-      clearInterval(timer);
-      const ar=d6(),dr=d6();$("#ad").textContent=ar;$("#dd").textContent=dr;
-      resolve(ar,dr);
-    },1450);
-  }
-
-  const roll=$("#roll");
-  if(roll)roll.addEventListener("click",()=>{
-    if(!S||S.over)return;
-    if(S.phase==="attack"){
-      if(S.attackChoice===null)return;
-      S.f[S.turn].selected=S.attackChoice;
-      S.phase="defence";S.defenceChoice=null;
-      $("#result").innerHTML=`<h3>Attack locked</h3><span class="muted">Move hidden. Pass control to ${S.f[1-S.turn].name} for the defence choice.</span>`;
-      render();return;
-    }
-    if(S.phase==="defence"){
-      if(S.defenceChoice===null)return;
-      S.phase="reveal";
-      const atk=S.f[S.turn].attacks[S.f[S.turn].selected],def=getDefences(S.f[1-S.turn].name)[S.defenceChoice];
-      $("#result").innerHTML=`<h3>REVEAL</h3><b>${atk.n}</b> vs <b>${def.name}</b><br><span class="muted">Rolling in a moment…</span>`;
-      render();
-      setTimeout(beginDiceRoll,850);
-    }
+  dinos.forEach((d,i)=>{p1.add(new Option(d.name,String(i)));p2.add(new Option(d.name,String(i)));});
+  p1.value=sessionStorage.getItem("jt_p1")??"0";
+  p2.value=sessionStorage.getItem("jt_p2")??"5";
+  p1.addEventListener("change",refresh);
+  p2.addEventListener("change",refresh);
+  $("#start").addEventListener("click",()=>{
+    if(p1.value===p2.value){alert("Choose different dinosaurs.");return;}
+    sessionStorage.setItem("jt_p1",p1.value);
+    sessionStorage.setItem("jt_p2",p2.value);
+    location.href="battle.html";
   });
-
-  const rematch=$("#rematch");if(rematch)rematch.addEventListener("click",()=>{if(S)start()});
-  const change=$("#changeFighters");if(change)change.addEventListener("click",()=>location.href="index.html");
-  const hist=$("#historyFromBattle");if(hist)hist.addEventListener("click",()=>openHistory("#battleScreen"));
-  const back=$("#historyBack");if(back)back.addEventListener("click",()=>showScreen("#battleScreen"));
-  const clear=$("#clearHistory");if(clear)clear.addEventListener("click",()=>{if(confirm("Clear all battle history?")){localStorage.removeItem(HIST_KEY);renderBattleHistory()}});
-  const snd=$("#soundToggleBattle");if(snd)snd.addEventListener("click",toggleSound);
-
-  try{start();updateSoundButtons();installFxBorders()}
-  catch(e){console.error(e);if($("#result"))$("#result").innerHTML="<h3>Battle could not start</h3><div class='muted'>Return to fighter selection and try again.</div>"}
+  $("#historyFromSelect").addEventListener("click",()=>{renderHistory();show("historyScreen");});
+  $("#historyBack").addEventListener("click",()=>show("selectionScreen"));
+  $("#clearHistory").addEventListener("click",()=>{if(confirm("Clear all battle history?")){localStorage.removeItem(HIST_KEY);renderHistory();}});
+  $("#soundToggleSelect").addEventListener("click",()=>{soundOn=!soundOn;localStorage.setItem("jurassicSound",soundOn?"on":"off");updateSound();});
+  refresh(); updateSound(); installFxBorders(); show("selectionScreen");
 });
 </script>
 </body></html>
